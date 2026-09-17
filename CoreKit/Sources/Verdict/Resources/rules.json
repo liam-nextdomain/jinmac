@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "min_active_hours": 10,
+  "memory": {
+    "signal": "메모리 압박 경고 이상, 또는 스왑 사용량 > 1GB",
+    "max_grade": "limit",
+    "swap_used_bytes_above": 1073741824,
+    "watch": { "op": ">=", "value": 0.05 },
+    "limit": { "op": ">", "value": 0.20 }
+  },
+  "memory_critical": {
+    "signal": "메모리 압박 위험",
+    "max_grade": "limit",
+    "watch": { "op": ">", "value": 0.0 },
+    "limit": { "op": ">=", "value": 0.02 }
+  },
+  "cpu": {
+    "signal": "P코어 평균 사용률 >= 90%가 30초 이상 지속",
+    "max_grade": "watch",
+    "utilization_at_least": 0.90,
+    "sustain_seconds": 30,
+    "watch": { "op": ">=", "value": 0.10 },
+    "limit": { "op": ">", "value": 0.30 }
+  },
+  "gpu": {
+    "signal": "GPU 사용률 >= 90%가 30초 이상 지속",
+    "max_grade": "watch",
+    "utilization_at_least": 0.90,
+    "sustain_seconds": 30,
+    "watch": { "op": ">=", "value": 0.10 },
+    "limit": { "op": ">", "value": 0.30 }
+  },
+  "thermal": {
+    "signal": "스로틀링 (주파수가 정격 대비 20% 이상 하락 & 온도 상승). 단위는 활성 주당 횟수",
+    "max_grade": "watch",
+    "frequency_drop_at_least": 0.20,
+    "single_event_minutes_at_least": 10,
+    "watch": { "op": ">=", "value": 1 },
+    "limit": { "op": ">=", "value": 4 }
+  },
+  "disk": {
+    "signal": "I/O 대기 >= 30%가 30초 이상, 또는 남은 용량 < 15%",
+    "max_grade": "watch",
+    "io_wait_at_least": 0.30,
+    "sustain_seconds": 30,
+    "free_space_ratio_below": 0.15,
+    "watch": { "op": ">=", "value": 0.05 },
+    "limit": { "op": ">", "value": 0.15 }
+  }
+}
