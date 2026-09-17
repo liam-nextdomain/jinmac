@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  샌드박스를 쓰지 않는다 (요구사항 9장, 11장). App Store 배포 대상이 아니며,
+	  IOKit·SMC·IOReport를 읽어야 한다.
+	  Hardened Runtime은 켜지만, 현재 필요한 예외(entitlement)는 없다.
+	  Foundation Models도 특별한 entitlement가 필요 없다 (요구사항 10.1).
+	-->
+</dict>
+</plist>

@@ -1,0 +1,3 @@
+/* App name shown in Finder and System Settings */
+"CFBundleDisplayName" = "JinMac";
+"CFBundleName" = "JinMac";
