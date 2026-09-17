@@ -1,0 +1,33 @@
+# XcodeGen 생성물. project.yml이 진실이다. 절대 손으로 고치지 않는다.
+JinMac.xcodeproj/
+
+# 빌드 산출물
+build/
+DerivedData/
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode 사용자별 상태
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.dSYM
+*.dSYM.zip
+
+# macOS
+.DS_Store
+
+# 로컬 검진 데이터. 샘플 DB에는 이 맥에서 쓴 앱과 프로세스 이름이 남으므로 절대 올리지 않는다.
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# Claude Code 작업 환경. 규칙, 스킬, 출력 스타일, 로드맵 전부 커밋하지 않는다.
+# 앱을 빌드하고 테스트하는 데 필요하지 않은 관리용 자산이기 때문이다.
+# 개발자가 읽어야 하는 내용은 docs/development.md 와 kb/wiki/ 에 남아 있다.
+.claude/
+CLAUDE.md
