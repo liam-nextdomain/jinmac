@@ -1,0 +1,89 @@
+name: JinMac
+
+options:
+  bundleIdPrefix: dev.liampark
+  deploymentTarget:
+    macOS: "14.0"
+  developmentLanguage: ko
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+  groupSortPosition: top
+
+packages:
+  CoreKit:
+    path: CoreKit
+
+settings:
+  base:
+    # Universal (Apple Silicon + Intel). Intel 지원 범위는 요구사항 12장 미결이다.
+    # Debug에서 ONLY_ACTIVE_ARCH를 끄면 앱은 2개 아키텍처로 빌드되는데 CoreKit 패키지는
+    # 활성 아키텍처만 빌드해서 모듈을 못 찾는다. Debug는 활성 아키텍처만, Universal은
+    # Release/아카이브에서 보장한다.
+    ARCHS: $(ARCHS_STANDARD)
+
+    # Swift 6 언어 모드 (요구사항 9장). Moja와 달리 C 콜백 경계가 없어 처음부터 엄격 검사로 간다.
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+
+    # 서명: 개발자 등록 없음 → 영구히 ad-hoc + Hardened Runtime (요구사항 10.1)
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: YES
+    # IOKit·SMC를 읽어야 하므로 샌드박스를 쓰지 않는다. App Store 배포는 비목표 (요구사항 11장)
+    ENABLE_APP_SANDBOX: NO
+
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEAD_CODE_STRIPPING: YES
+
+    # 한국어 기본, 영어 리소스 준비 (F-64)
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+  configs:
+    Debug:
+      ONLY_ACTIVE_ARCH: YES
+    Release:
+      ONLY_ACTIVE_ARCH: NO
+      SWIFT_COMPILATION_MODE: wholemodule
+
+targets:
+  JinMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+    dependencies:
+      - package: CoreKit
+        product: Model
+      - package: CoreKit
+        product: Collector
+      - package: CoreKit
+        product: Store
+      - package: CoreKit
+        product: Workload
+      - package: CoreKit
+        product: Verdict
+      - package: CoreKit
+        product: Report
+      - package: CoreKit
+        product: Narrator
+    settings:
+      base:
+        PRODUCT_NAME: JinMac
+        PRODUCT_BUNDLE_IDENTIFIER: dev.liampark.jinmac
+        INFOPLIST_FILE: App/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGN_ENTITLEMENTS: App/Resources/JinMac.entitlements
+        COMBINE_HIDPI_IMAGES: YES
+        ENABLE_PREVIEWS: YES
+
+schemes:
+  JinMac:
+    build:
+      targets:
+        JinMac: all
+    run:
+      config: Debug
+    archive:
+      config: Release
