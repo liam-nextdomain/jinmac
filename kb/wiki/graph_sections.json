@@ -1,0 +1,2678 @@
+{
+  "meta": {
+    "generated_by": "scripts/kb.swift",
+    "companion": "graph.json"
+  },
+  "stats": {
+    "sections": 46,
+    "symbols": 43,
+    "edges": 257
+  },
+  "sections": [
+    {
+      "id": "requirements#1",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "1",
+      "heading": "Overview and purpose",
+      "line_start": 96,
+      "line_end": 113,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#2",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "2",
+      "heading": "Core principles and constraints",
+      "line_start": 114,
+      "line_end": 127,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#3",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "3",
+      "heading": "Target users and usage scenarios",
+      "line_start": 128,
+      "line_end": 144,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "4",
+      "heading": "Functional requirements",
+      "line_start": 145,
+      "line_end": 149,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4.1",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "4.1",
+      "heading": "Collection (Collector)",
+      "line_start": 150,
+      "line_end": 165,
+      "symbols_declared": [
+        "F-01",
+        "F-02",
+        "F-03",
+        "F-04",
+        "F-05",
+        "F-06",
+        "F-07",
+        "F-08",
+        "F-09",
+        "F-10",
+        "F-11"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4.2",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "4.2",
+      "heading": "Workload tagging",
+      "line_start": 166,
+      "line_end": 174,
+      "symbols_declared": [
+        "F-20",
+        "F-21",
+        "F-22",
+        "F-23"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4.3",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "4.3",
+      "heading": "Rule engine",
+      "line_start": 175,
+      "line_end": 184,
+      "symbols_declared": [
+        "F-30",
+        "F-31",
+        "F-32",
+        "F-33",
+        "F-34"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4.4",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "4.4",
+      "heading": "Report generation",
+      "line_start": 185,
+      "line_end": 194,
+      "symbols_declared": [
+        "F-40",
+        "F-41",
+        "F-42",
+        "F-43",
+        "F-44"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4.5",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "4.5",
+      "heading": "Export and sharing",
+      "line_start": 195,
+      "line_end": 203,
+      "symbols_declared": [
+        "F-50",
+        "F-51",
+        "F-52",
+        "F-53"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#4.6",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "4.6",
+      "heading": "UI",
+      "line_start": 204,
+      "line_end": 213,
+      "symbols_declared": [
+        "F-60",
+        "F-61",
+        "F-62",
+        "F-63",
+        "F-64"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#5",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "5",
+      "heading": "Rule engine verdict criteria (draft)",
+      "line_start": 214,
+      "line_end": 255,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-32",
+        "F-42"
+      ]
+    },
+    {
+      "id": "requirements#6",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "6",
+      "heading": "On-device AI requirements",
+      "line_start": 256,
+      "line_end": 276,
+      "symbols_declared": [
+        "A-01",
+        "A-02",
+        "A-03",
+        "A-04",
+        "A-05",
+        "A-06",
+        "A-07",
+        "A-08",
+        "A-09"
+      ],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#7",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "7",
+      "heading": "Data model and storage",
+      "line_start": 277,
+      "line_end": 298,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-52"
+      ]
+    },
+    {
+      "id": "requirements#8",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "8",
+      "heading": "Non-functional requirements",
+      "line_start": 299,
+      "line_end": 311,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#9",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "9",
+      "heading": "Technology stack",
+      "line_start": 312,
+      "line_end": 330,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#10",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "10",
+      "heading": "Distribution",
+      "line_start": 331,
+      "line_end": 335,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#10.1",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "10.1",
+      "heading": "Constraints created by not enrolling",
+      "line_start": 336,
+      "line_end": 345,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#10.2",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "10.2",
+      "heading": "Release procedure",
+      "line_start": 346,
+      "line_end": 353,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#10.3",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "10.3",
+      "heading": "Repository layout",
+      "line_start": 354,
+      "line_end": 361,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-21"
+      ]
+    },
+    {
+      "id": "requirements#11",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "11",
+      "heading": "Out of scope",
+      "line_start": 362,
+      "line_end": 377,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#12",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "12",
+      "heading": "Risks and open questions",
+      "line_start": 378,
+      "line_end": 400,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-06",
+        "F-21"
+      ]
+    },
+    {
+      "id": "requirements#13",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "13",
+      "heading": "Development stages",
+      "line_start": 401,
+      "line_end": 419,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-02",
+        "F-03",
+        "F-08",
+        "A-01",
+        "A-07",
+        "F-20",
+        "F-23",
+        "F-52",
+        "A-02",
+        "A-03",
+        "A-04",
+        "A-05",
+        "A-06",
+        "F-21",
+        "F-22"
+      ]
+    },
+    {
+      "id": "requirements#14",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 2,
+      "num": "14",
+      "heading": "Decisions and review notes (2026-09-17)",
+      "line_start": 420,
+      "line_end": 430,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.1",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.1",
+      "heading": "Decisions",
+      "line_start": 431,
+      "line_end": 454,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-32",
+        "F-01",
+        "F-11",
+        "F-20",
+        "F-21",
+        "F-30",
+        "F-34",
+        "F-40",
+        "F-44",
+        "F-50",
+        "F-53",
+        "F-02",
+        "F-03",
+        "F-04",
+        "F-05",
+        "F-06",
+        "F-07",
+        "F-08",
+        "F-09",
+        "F-10",
+        "F-31",
+        "F-33",
+        "F-41",
+        "F-42",
+        "F-43",
+        "F-51",
+        "F-52"
+      ]
+    },
+    {
+      "id": "requirements#14.2",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2",
+      "heading": "Review notes: collection",
+      "line_start": 455,
+      "line_end": 458,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.2a",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2a",
+      "heading": "F-02: read the memory pressure level on every sample",
+      "line_start": 459,
+      "line_end": 470,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-02"
+      ]
+    },
+    {
+      "id": "requirements#14.2b",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2b",
+      "heading": "F-05: macOS has no I/O wait metric",
+      "line_start": 471,
+      "line_end": 484,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-05"
+      ]
+    },
+    {
+      "id": "requirements#14.2c",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2c",
+      "heading": "F-06: throttling cannot be judged from frequency and temperature alone",
+      "line_start": 485,
+      "line_end": 498,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-06"
+      ]
+    },
+    {
+      "id": "requirements#14.2d",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2d",
+      "heading": "F-09, F-23: usage of processes owned by other accounts may be unreadable with ordinary privileges",
+      "line_start": 499,
+      "line_end": 514,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-09",
+        "F-23",
+        "F-10"
+      ]
+    },
+    {
+      "id": "requirements#14.2e",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2e",
+      "heading": "F-04: find GPU statistics through the parent class IOAccelerator",
+      "line_start": 515,
+      "line_end": 524,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-04"
+      ]
+    },
+    {
+      "id": "requirements#14.2f",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.2f",
+      "heading": "F-23: do not drop work left running while away from the machine",
+      "line_start": 525,
+      "line_end": 536,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-23"
+      ]
+    },
+    {
+      "id": "requirements#14.3",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.3",
+      "heading": "Review notes: verdict criteria",
+      "line_start": 537,
+      "line_end": 540,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.3a",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.3a",
+      "heading": "§5 memory signal: look at swap growth instead of swap used",
+      "line_start": 541,
+      "line_end": 550,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.3b",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.3b",
+      "heading": "§5 auxiliary rule: do not judge intended full load from the frontmost app alone",
+      "line_start": 551,
+      "line_end": 563,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-08",
+        "F-20",
+        "F-09"
+      ]
+    },
+    {
+      "id": "requirements#14.3c",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.3c",
+      "heading": "§5 thermal row: normalize the counts by active time",
+      "line_start": 564,
+      "line_end": 572,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-01"
+      ]
+    },
+    {
+      "id": "requirements#14.3d",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.3d",
+      "heading": "§13: there are no verifiable acceptance criteria",
+      "line_start": 573,
+      "line_end": 585,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.4",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.4",
+      "heading": "Review notes: on-device AI",
+      "line_start": 586,
+      "line_end": 589,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.4a",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.4a",
+      "heading": "A-04: the app inserts the numbers, not the model",
+      "line_start": 590,
+      "line_end": 602,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "A-04"
+      ]
+    },
+    {
+      "id": "requirements#14.4b",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.4b",
+      "heading": "F-41, A-06, A-07: decide whether to reveal the fallback to the user",
+      "line_start": 603,
+      "line_end": 615,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-41",
+        "A-06",
+        "A-07"
+      ]
+    },
+    {
+      "id": "requirements#14.4c",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.4c",
+      "heading": "A-01: check Korean support separately",
+      "line_start": 616,
+      "line_end": 625,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "A-01",
+        "F-64"
+      ]
+    },
+    {
+      "id": "requirements#14.5",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.5",
+      "heading": "Review notes: distribution and non-functional",
+      "line_start": 626,
+      "line_end": 629,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.5a",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.5a",
+      "heading": "F-11: with ad-hoc signing the login item can come undone after an update",
+      "line_start": 630,
+      "line_end": 642,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-11"
+      ]
+    },
+    {
+      "id": "requirements#14.5b",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.5b",
+      "heading": "§8: recording `top_process` easily pushes disk writes past 5MB a day",
+      "line_start": 643,
+      "line_end": 653,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.5c",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.5c",
+      "heading": "F-10, F-22: decide whether 1-second sessions count against the resource budget",
+      "line_start": 654,
+      "line_end": 663,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-10",
+        "F-22"
+      ]
+    },
+    {
+      "id": "requirements#14.5d",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.5d",
+      "heading": "§10.2: state the Actions free-tier condition and SDK version",
+      "line_start": 664,
+      "line_end": 671,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "requirements#14.5e",
+      "doc": "requirements",
+      "path": "spec/requirements.en.md",
+      "level": 3,
+      "num": "14.5e",
+      "heading": "§13: pair development stages with version numbers",
+      "line_start": 672,
+      "line_end": 679,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    }
+  ],
+  "symbols": [
+    {
+      "id": "A-01",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.4c"
+      ],
+      "cited_by": [
+        {
+          "path": "App/AppModel.swift",
+          "line": 13
+        },
+        {
+          "path": "CoreKit/Sources/Narrator/NarratorAvailability.swift",
+          "line": 6
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/NarratorTests.swift",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "A-02",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "A-03",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "A-04",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.4a"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "A-05",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "A-06",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.4b"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "A-07",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.4b"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Narrator/NarratorAvailability.swift",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "id": "A-08",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [],
+      "cited_by": []
+    },
+    {
+      "id": "A-09",
+      "kind": "A",
+      "proposed": false,
+      "declared_in": "requirements#6",
+      "mentioned_in": [],
+      "cited_by": []
+    },
+    {
+      "id": "F-01",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.3c"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-02",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.1",
+        "requirements#14.2a"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "id": "F-03",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "id": "F-04",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.2e"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "id": "F-05",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.2b"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "id": "F-06",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#12",
+        "requirements#14.1",
+        "requirements#14.2c"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 47
+        }
+      ]
+    },
+    {
+      "id": "F-07",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "id": "F-08",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.1",
+        "requirements#14.3b"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Model/Sample.swift",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "id": "F-09",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.2d",
+        "requirements#14.3b"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-10",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.2d",
+        "requirements#14.5c"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/Sampler.swift",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "id": "F-11",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.1",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.5a"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-20",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.2",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.1",
+        "requirements#14.3b"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Workload/WorkloadCategory.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/WorkloadTests.swift",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "F-21",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.2",
+      "mentioned_in": [
+        "requirements#10.3",
+        "requirements#12",
+        "requirements#13",
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Workload/WorkloadCategory.swift",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "F-22",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.2",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.5c"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-23",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.2",
+      "mentioned_in": [
+        "requirements#13",
+        "requirements#14.2d",
+        "requirements#14.2f"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-30",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.3",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "id": "F-31",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.3",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Model/Grade.swift",
+          "line": 12
+        },
+        {
+          "path": "CoreKit/Sources/Report/CheckupReport.swift",
+          "line": 52
+        },
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "id": "F-32",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.3",
+      "mentioned_in": [
+        "requirements#5",
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Verdict/RuleSet.swift",
+          "line": 4
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "id": "F-33",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.3",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 5
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/ReportTests.swift",
+          "line": 22
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "id": "F-34",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.3",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Model/Grade.swift",
+          "line": 36
+        },
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 3
+        },
+        {
+          "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
+          "line": 18
+        },
+        {
+          "path": "CoreKit/Sources/Verdict/RuleSet.swift",
+          "line": 12
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+          "line": 5
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "id": "F-40",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.4",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Report/CheckupReport.swift",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "id": "F-41",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.4",
+      "mentioned_in": [
+        "requirements#14.1",
+        "requirements#14.4b"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-42",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.4",
+      "mentioned_in": [
+        "requirements#5",
+        "requirements#14.1"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-43",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.4",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-44",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.4",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-50",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.5",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Report/CheckupReport.swift",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "id": "F-51",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.5",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-52",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.5",
+      "mentioned_in": [
+        "requirements#7",
+        "requirements#13",
+        "requirements#14.1"
+      ],
+      "cited_by": [
+        {
+          "path": "CoreKit/Sources/Model/Grade.swift",
+          "line": 14
+        },
+        {
+          "path": "CoreKit/Sources/Report/CheckupReport.swift",
+          "line": 6
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/ReportTests.swift",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "id": "F-53",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.5",
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
+      "cited_by": []
+    },
+    {
+      "id": "F-60",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.6",
+      "mentioned_in": [],
+      "cited_by": [
+        {
+          "path": "App/AppModel.swift",
+          "line": 19
+        },
+        {
+          "path": "App/JinMacApp.swift",
+          "line": 5
+        },
+        {
+          "path": "App/Views/MenuContentView.swift",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "F-61",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.6",
+      "mentioned_in": [],
+      "cited_by": [
+        {
+          "path": "App/JinMacApp.swift",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "F-62",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.6",
+      "mentioned_in": [],
+      "cited_by": [
+        {
+          "path": "App/Views/MainWindowView.swift",
+          "line": 3
+        },
+        {
+          "path": "App/WindowPresenter.swift",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "id": "F-63",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.6",
+      "mentioned_in": [],
+      "cited_by": [
+        {
+          "path": "App/Views/MenuContentView.swift",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "F-64",
+      "kind": "F",
+      "proposed": false,
+      "declared_in": "requirements#4.6",
+      "mentioned_in": [
+        "requirements#14.4c"
+      ],
+      "cited_by": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "requirements",
+      "to": "requirements#1",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#2",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#3",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4.1",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-01",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-02",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-03",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-04",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-05",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-06",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-07",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-08",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-09",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-10",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "F-11",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4.2",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#4.2",
+      "to": "F-20",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.2",
+      "to": "F-21",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.2",
+      "to": "F-22",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.2",
+      "to": "F-23",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4.3",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#4.3",
+      "to": "F-30",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.3",
+      "to": "F-31",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.3",
+      "to": "F-32",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.3",
+      "to": "F-33",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.3",
+      "to": "F-34",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.3",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4.4",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#4.4",
+      "to": "F-40",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.4",
+      "to": "F-41",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.4",
+      "to": "F-42",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.4",
+      "to": "F-43",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.4",
+      "to": "F-44",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.4",
+      "to": "requirements#6",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4.5",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#4.5",
+      "to": "F-50",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.5",
+      "to": "F-51",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.5",
+      "to": "F-52",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.5",
+      "to": "F-53",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#4.6",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#4.6",
+      "to": "F-60",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.6",
+      "to": "F-61",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.6",
+      "to": "F-62",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.6",
+      "to": "F-63",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#4.6",
+      "to": "F-64",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#5",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#5",
+      "to": "F-32",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#5",
+      "to": "F-42",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#6",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-01",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-02",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-03",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-04",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-05",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-06",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-07",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-08",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements#6",
+      "to": "A-09",
+      "relation": "declares"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#7",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#7",
+      "to": "F-52",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#8",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#9",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#9",
+      "to": "requirements#6",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#9",
+      "to": "requirements#10",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#10",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#10.1",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#10.1",
+      "to": "requirements#12",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#10.2",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#10.3",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#10.3",
+      "to": "F-21",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#11",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#12",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#12",
+      "to": "F-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#12",
+      "to": "F-21",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#13",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-02",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-08",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-01",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-07",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-20",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-23",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-52",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-02",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-04",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-05",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "A-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-21",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#13",
+      "to": "F-22",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14",
+      "to": "requirements#1",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14",
+      "to": "requirements#13",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14",
+      "to": "requirements#14.1",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14",
+      "to": "requirements#14.2",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14",
+      "to": "requirements#14.5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.1",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-32",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-01",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-11",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-20",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-21",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-30",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-34",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-40",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-44",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-50",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-53",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-02",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-04",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-05",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-07",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-08",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-09",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-10",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-31",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-33",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-41",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-42",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-43",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-51",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-52",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#12",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#7",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#9",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#8",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#10.2",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "requirements#6",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2",
+      "to": "requirements#4.1",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.2",
+      "to": "requirements#4.2",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2a",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2a",
+      "to": "F-02",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.2a",
+      "to": "requirements#7",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2b",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2b",
+      "to": "F-05",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.2b",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.2b",
+      "to": "requirements#7",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2c",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2c",
+      "to": "F-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.2c",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2d",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2d",
+      "to": "F-09",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.2d",
+      "to": "F-23",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.2d",
+      "to": "F-10",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.2d",
+      "to": "requirements#8",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2e",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2e",
+      "to": "F-04",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.2f",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.2f",
+      "to": "F-23",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.3",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.3",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.3",
+      "to": "requirements#13",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.3a",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.3a",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.3b",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.3b",
+      "to": "F-08",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.3b",
+      "to": "F-20",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.3b",
+      "to": "F-09",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.3b",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.3c",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.3c",
+      "to": "F-01",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.3c",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.3d",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.3d",
+      "to": "requirements#13",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.3d",
+      "to": "requirements#12",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.3d",
+      "to": "requirements#5",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.4",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.4",
+      "to": "requirements#6",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.4",
+      "to": "requirements#4.4",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.4a",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.4a",
+      "to": "A-04",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.4b",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.4b",
+      "to": "F-41",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.4b",
+      "to": "A-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.4b",
+      "to": "A-07",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.4b",
+      "to": "requirements#2",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.4c",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.4c",
+      "to": "A-01",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.4c",
+      "to": "F-64",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.5",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.5",
+      "to": "requirements#8",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.5",
+      "to": "requirements#10",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.5",
+      "to": "requirements#13",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.5a",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.5a",
+      "to": "F-11",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.5a",
+      "to": "requirements#10.1",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.5b",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.5b",
+      "to": "requirements#8",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.5b",
+      "to": "requirements#7",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.5c",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.5c",
+      "to": "F-10",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.5c",
+      "to": "F-22",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.5c",
+      "to": "requirements#8",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.5d",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.5d",
+      "to": "requirements#10.2",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.5d",
+      "to": "requirements#14.1",
+      "relation": "references"
+    },
+    {
+      "from": "requirements",
+      "to": "requirements#14.5e",
+      "relation": "contains"
+    },
+    {
+      "from": "requirements#14.5e",
+      "to": "requirements#13",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#14.5e",
+      "to": "requirements#14.3d",
+      "relation": "references"
+    },
+    {
+      "from": "App/AppModel.swift",
+      "to": "A-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Narrator/NarratorAvailability.swift",
+      "to": "A-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/NarratorTests.swift",
+      "to": "A-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Narrator/NarratorAvailability.swift",
+      "to": "A-07",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-02",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-02",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-04",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-04",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-05",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-05",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-06",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-06",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-07",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-07",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-08",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-08",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Workload/WorkloadCategory.swift",
+      "to": "F-20",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/WorkloadTests.swift",
+      "to": "F-20",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Workload/WorkloadCategory.swift",
+      "to": "F-21",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-30",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+      "to": "F-30",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Grade.swift",
+      "to": "F-31",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Report/CheckupReport.swift",
+      "to": "F-31",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-31",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+      "to": "F-31",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-32",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleSet.swift",
+      "to": "F-32",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+      "to": "F-32",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-33",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-33",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/ReportTests.swift",
+      "to": "F-33",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+      "to": "F-33",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Grade.swift",
+      "to": "F-34",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-34",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "F-34",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleSet.swift",
+      "to": "F-34",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+      "to": "F-34",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
+      "to": "F-34",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Report/CheckupReport.swift",
+      "to": "F-40",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Report/CheckupReport.swift",
+      "to": "F-50",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Grade.swift",
+      "to": "F-52",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Report/CheckupReport.swift",
+      "to": "F-52",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/ReportTests.swift",
+      "to": "F-52",
+      "relation": "cites"
+    },
+    {
+      "from": "App/AppModel.swift",
+      "to": "F-60",
+      "relation": "cites"
+    },
+    {
+      "from": "App/JinMacApp.swift",
+      "to": "F-60",
+      "relation": "cites"
+    },
+    {
+      "from": "App/Views/MenuContentView.swift",
+      "to": "F-60",
+      "relation": "cites"
+    },
+    {
+      "from": "App/JinMacApp.swift",
+      "to": "F-61",
+      "relation": "cites"
+    },
+    {
+      "from": "App/Views/MainWindowView.swift",
+      "to": "F-62",
+      "relation": "cites"
+    },
+    {
+      "from": "App/WindowPresenter.swift",
+      "to": "F-62",
+      "relation": "cites"
+    },
+    {
+      "from": "App/Views/MenuContentView.swift",
+      "to": "F-63",
+      "relation": "cites"
+    }
+  ]
+}

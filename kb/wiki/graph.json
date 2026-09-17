@@ -1,0 +1,378 @@
+{
+  "meta": {
+    "generated_by": "scripts/kb.swift",
+    "companion": "graph_sections.json"
+  },
+  "stats": {
+    "documents": 1,
+    "entities": 16,
+    "code": 13,
+    "edges": 29
+  },
+  "nodes": [
+    {
+      "id": "requirements",
+      "type": "document",
+      "doc_type": "requirements",
+      "title": "JinMac, a workload checkup app for the Mac: development requirements",
+      "version": "1.0",
+      "date": "2026-09-17",
+      "path": "spec/requirements.en.md",
+      "tags": [
+        "requirements",
+        "v1",
+        "menu-bar-app",
+        "workload-checkup",
+        "rule-engine",
+        "on-device-ai"
+      ]
+    },
+    {
+      "id": "collector",
+      "type": "entity",
+      "entity_type": "component",
+      "definition": "the layer that reads memory, CPU, GPU, disk, thermal and context metrics every 5 seconds by default. it records a failed read as missing rather than 0, never stops, and keeps its own load under 1% CPU"
+    },
+    {
+      "id": "sample-store",
+      "type": "entity",
+      "entity_type": "component",
+      "definition": "the layer that stores checkup data in a single SQLite file under ~/Library/Application Support/JinMac/. it uses the system SQLite3 directly, with no third-party dependency"
+    },
+    {
+      "id": "workload-tagging",
+      "type": "entity",
+      "entity_type": "mechanism",
+      "definition": "sorts the frontmost app's bundle ID into 10 workload categories. it is the evidence for which task a limit signal happened under, and the mapping is a bundled JSON the user can edit"
+    },
+    {
+      "id": "rule-engine",
+      "type": "entity",
+      "entity_type": "component",
+      "definition": "the layer that turns the share of active time each resource spent at its limit signal into ample, watch or limit. same input must give same output, so it uses no clock, no randomness and no unordered iteration"
+    },
+    {
+      "id": "rule-thresholds",
+      "type": "entity",
+      "entity_type": "constraint",
+      "definition": "keeps thresholds and per-resource grade caps in a bundled JSON rather than code, so they can be recalibrated from community feedback without shipping a new app"
+    },
+    {
+      "id": "limit-signal",
+      "type": "entity",
+      "entity_type": "concept",
+      "definition": "the definition of the moment a resource counts as at its limit. grades come from the share of active time this signal covers, so a wrong definition cannot be fixed by tuning thresholds"
+    },
+    {
+      "id": "active-time",
+      "type": "entity",
+      "entity_type": "concept",
+      "definition": "the denominator of every verdict, with idle time removed. under 10 hours the verdict is withheld instead of graded"
+    },
+    {
+      "id": "intended-full-load",
+      "type": "entity",
+      "entity_type": "mechanism",
+      "definition": "an auxiliary rule that treats a CPU limit during work that is meant to saturate the CPU, such as rendering, compiling or exporting, as normal operation rather than a bottleneck, and lowers the grade by one step"
+    },
+    {
+      "id": "memory-pressure-level",
+      "type": "entity",
+      "entity_type": "api",
+      "definition": "the memory pressure level macOS assigns (normal, warning, critical). RAM cannot be upgraded after purchase on Apple Silicon, so this signal is judged most conservatively"
+    },
+    {
+      "id": "checkup-report",
+      "type": "entity",
+      "entity_type": "component",
+      "definition": "the report, holding the verdict and the prose separately. it carries schema_version so that compatibility is checked first when a report from another machine is compared side by side"
+    },
+    {
+      "id": "report-card",
+      "type": "entity",
+      "entity_type": "concept",
+      "definition": "a single PNG for community posts. it carries only machine specs, checkup period, per-resource grades and top workloads with no personal data, and doubles as promotion for an app with no App Store presence"
+    },
+    {
+      "id": "narrator",
+      "type": "entity",
+      "entity_type": "component",
+      "definition": "the layer that takes only the rule engine's result and polishes it into Korean prose with Foundation Models. it cannot change grades or numbers, and falls back to template sentences when unavailable"
+    },
+    {
+      "id": "menu-bar-app",
+      "type": "entity",
+      "entity_type": "component",
+      "definition": "an app that lives as a single menu bar icon. it draws no live graphs, so it does not compete with existing monitor apps"
+    },
+    {
+      "id": "no-network",
+      "type": "entity",
+      "entity_type": "constraint",
+      "definition": "the promise that the app makes no network request other than the update check. collection, storage, analysis and report generation all finish on the user's machine"
+    },
+    {
+      "id": "ad-hoc-signing",
+      "type": "entity",
+      "entity_type": "constraint",
+      "definition": "shipping signed with codesign -s - and no developer enrollment. users must get past the Gatekeeper warning themselves, and because the signature changes every build, the login item registration can come undone"
+    },
+    {
+      "id": "xcodegen",
+      "type": "entity",
+      "entity_type": "script",
+      "definition": "the tool that generates JinMac.xcodeproj from project.yml. the .xcodeproj is a generated artifact and is never edited by hand"
+    },
+    {
+      "id": "App/JinMacApp.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "menu-bar-app"
+      ]
+    },
+    {
+      "id": "App/Views/MenuContentView.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "menu-bar-app"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Collector/Sampler.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "collector"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Narrator/NarratorAvailability.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "narrator"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Report/CheckupReport.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "checkup-report"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Store/SampleStore.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "sample-store"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Verdict/Resources/rules.json",
+      "type": "code",
+      "lang": "other",
+      "entities": [
+        "rule-thresholds"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "rule-engine"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Verdict/RuleSet.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "rule-engine"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Workload/Resources/app-categories.json",
+      "type": "code",
+      "lang": "other",
+      "entities": [
+        "workload-tagging"
+      ]
+    },
+    {
+      "id": "CoreKit/Sources/Workload/WorkloadCategory.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "workload-tagging"
+      ]
+    },
+    {
+      "id": "project.yml",
+      "type": "code",
+      "lang": "yaml",
+      "entities": [
+        "xcodegen"
+      ]
+    },
+    {
+      "id": "scripts/release.sh",
+      "type": "code",
+      "lang": "other",
+      "entities": [
+        "ad-hoc-signing"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "requirements",
+      "to": "collector",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "sample-store",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "workload-tagging",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "rule-engine",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "rule-thresholds",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "limit-signal",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "active-time",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "intended-full-load",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "memory-pressure-level",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "checkup-report",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "report-card",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "narrator",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "menu-bar-app",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "no-network",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "ad-hoc-signing",
+      "relation": "defines"
+    },
+    {
+      "from": "requirements",
+      "to": "xcodegen",
+      "relation": "defines"
+    },
+    {
+      "from": "App/JinMacApp.swift",
+      "to": "menu-bar-app",
+      "relation": "implements"
+    },
+    {
+      "from": "App/Views/MenuContentView.swift",
+      "to": "menu-bar-app",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "collector",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Narrator/NarratorAvailability.swift",
+      "to": "narrator",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Report/CheckupReport.swift",
+      "to": "checkup-report",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Store/SampleStore.swift",
+      "to": "sample-store",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/Resources/rules.json",
+      "to": "rule-thresholds",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
+      "to": "rule-engine",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Verdict/RuleSet.swift",
+      "to": "rule-engine",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Workload/Resources/app-categories.json",
+      "to": "workload-tagging",
+      "relation": "implements"
+    },
+    {
+      "from": "CoreKit/Sources/Workload/WorkloadCategory.swift",
+      "to": "workload-tagging",
+      "relation": "implements"
+    },
+    {
+      "from": "project.yml",
+      "to": "xcodegen",
+      "relation": "implements"
+    },
+    {
+      "from": "scripts/release.sh",
+      "to": "ad-hoc-signing",
+      "relation": "implements"
+    }
+  ]
+}
