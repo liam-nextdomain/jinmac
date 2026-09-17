@@ -1,0 +1,106 @@
+# JinMac 개발 문서
+
+사용자용 안내는 [README.md](../README.md)에 있습니다.
+
+```sh
+brew install xcodegen          # 빌드 도구. 앱 자체의 서드파티 의존성은 0개
+
+./scripts/build.sh             # 빌드 → build/Build/Products/Debug/JinMac.app
+./scripts/test.sh              # CoreKit 테스트 + 지식 베이스 자체 검사
+./scripts/test.sh VerdictTests # 스위트 하나만
+./scripts/release.sh           # 릴리스 빌드 → ad-hoc 서명 → zip + SHA-256
+open JinMac.xcodeproj          # Xcode에서 열기 (build.sh가 먼저 만들어 둡니다)
+```
+
+`JinMac.xcodeproj`는 **자동으로 생성되는 파일**입니다. 빌드 설정은
+[project.yml](../project.yml)에서만 바꿉니다.
+
+## 구조
+
+```
+App/       메뉴바 UI, 메인 창                SwiftUI + 필요한 곳만 AppKit
+CoreKit/   로직 패키지 (모듈 7개)            UI 의존 없음. 앱 없이 swift test로 검증
+scripts/   빌드·테스트·릴리스·지식 베이스 도구
+kb/wiki/   요구사항, 결정, 검토 의견         지식 그래프가 관계를 잇는다
+kb/raw/    외부 원자료 (요구사항 원문 등)    쓴 뒤 고치지 않는다
+docs/      개발 문서(이 파일)
+```
+
+### CoreKit 모듈
+
+의존 방향이 곧 설계 제약입니다. 화살표를 거스르는 import는 넣지 않습니다.
+
+```
+Model ← Collector            수집: IOKit·sysctl·비공개 API는 여기서만
+Model ← Store                저장: 시스템 SQLite3
+Model ← Workload ← Verdict   판정: 결정론. Collector·Store를 모른다
+Verdict ← Report ← Narrator  문장: Narrator는 판정 결과만 받는다
+```
+
+| 모듈 | 요구사항 | 지금 들어 있는 것 |
+|---|---|---|
+| `Model` | 공용 | `Sample`(읽지 못한 값은 `nil`), `ResourceKind`, `Grade`, `Judgement` |
+| `Collector` | F-01\~F-11 | `Sampler` 프로토콜 |
+| `Store` | 7장 | `SampleStore`: WAL 모드로 열기, `user_version` |
+| `Workload` | F-20, F-21 | `WorkloadCategory` 10종, 빈 `app-categories.json` |
+| `Verdict` | F-30\~F-34, 5장 | `rules.json`(5장 초기값), 경계값 판정과 보류 |
+| `Report` | F-40\~F-44, F-50\~F-53 | `CheckupReport`, 키를 정렬한 JSON 인코더 |
+| `Narrator` | 6장 | `NarratorAvailability`: Foundation Models 가용성과 불가 사유 |
+
+## 데이터 경로
+
+검진 데이터는 `~/Library/Application Support/JinMac/jinmac.sqlite`에 저장합니다.
+테스트나 실험에서 이 경로를 건드리지 않으려면 `JINMAC_DATA_DIR`로 다른 디렉터리를 넘깁니다.
+
+```sh
+JINMAC_DATA_DIR=~/tmp/jinmac-dev open build/Build/Products/Debug/JinMac.app
+```
+
+## Foundation Models 약한 링크
+
+최소 지원 OS는 macOS 14이고 Foundation Models는 macOS 26부터 있습니다. 프레임워크가 강하게
+링크되면 macOS 14와 15에서는 앱이 아예 실행되지 않습니다. `Narrator` 모듈 밖에서
+`FoundationModels`를 import하지 않고, 모든 사용을 `@available(macOS 26, *)` 안에 두면 링커가
+약한 링크(`LC_LOAD_WEAK_DYLIB`)로 연결합니다. `scripts/release.sh`가 배포 전에 이것을 확인하고,
+강한 링크면 실패합니다.
+
+```sh
+otool -l build/Build/Products/Debug/JinMac.app/Contents/MacOS/JinMac.debug.dylib | grep -B1 -A2 FoundationModels
+```
+
+## 고친 것을 설치본에 반영하기
+
+`./scripts/build.sh`가 만드는 것은 `build/Build/Products/Debug/JinMac.app`이고,
+`/Applications/JinMac.app`은 손대지 않습니다. 설치본을 바꾸려면 릴리스 빌드를 만들어 교체합니다.
+
+```sh
+osascript -e 'quit app "JinMac"'
+./scripts/release.sh
+ditto build/export/JinMac.app /Applications/JinMac.app
+```
+
+> **로그인 항목을 확인하세요**: `SMAppService`는 등록을 앱의 코드 서명에 묶습니다. ad-hoc
+> 서명은 빌드할 때마다 달라지므로, 앱을 교체한 다음 자동 실행이 꺼져 있을 수 있습니다
+> ([요구사항 14.5a](../kb/wiki/spec/requirements.md)).
+
+## 문서
+
+- [kb/wiki/spec/requirements.md](../kb/wiki/spec/requirements.md): 개발 요구사항, 결정과 검토 의견
+- [kb/raw/references/2026-09-17-requirements-draft.md](../kb/raw/references/2026-09-17-requirements-draft.md): 요구사항 초안 원문
+- [kb/wiki/index.md](../kb/wiki/index.md): 지식 베이스 전체 색인
+
+## 릴리스까지 남은 일
+
+v0.1.0은 요구사항 13장 1단계(MVP)의 완료 기준을 채워야 합니다. 본인 기기에서 7일 검진을 마친 뒤
+리포트가 나오고, 커뮤니티에 리포트 카드를 올릴 수 있어야 합니다. 그 전에 0단계 검증 세 가지를
+먼저 끝냅니다.
+
+<!-- roadmap:release-checklist:start -->
+- [ ] ad-hoc 서명 앱에서 Foundation Models 호출이 되는지 실기기에서 확인
+- [ ] SMC 온도와 IOReport 주파수를 일반 권한으로 읽을 수 있는지 확인
+- [ ] 메모리·CPU 수집과 SQLite 저장
+- [ ] 메모리 판정과 템플릿 한국어 리포트
+- [ ] 리포트 카드 PNG 내보내기
+- [ ] README 설치 안내와 수집 항목 전체 목록
+- [ ] GitHub Release 수동 배포 (zip + SHA-256)
+<!-- roadmap:release-checklist:end -->
