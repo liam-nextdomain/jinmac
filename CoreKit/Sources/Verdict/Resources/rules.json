@@ -2,9 +2,9 @@
   "schema_version": 1,
   "min_active_hours": 10,
   "memory": {
-    "signal": "메모리 압박 경고 이상, 또는 스왑 사용량 > 1GB",
+    "signal": "메모리 압박 경고 이상, 또는 스왑 아웃 증가율 > 초당 1MB",
     "max_grade": "limit",
-    "swap_used_bytes_above": 1073741824,
+    "swap_out_bytes_per_second_above": 1048576,
     "watch": { "op": ">=", "value": 0.05 },
     "limit": { "op": ">", "value": 0.20 }
   },

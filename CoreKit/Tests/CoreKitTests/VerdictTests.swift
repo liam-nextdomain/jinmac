@@ -19,7 +19,7 @@ final class VerdictTests: XCTestCase {
 
         XCTAssertEqual(rules.memory.watch, Threshold(op: .atLeast, value: 0.05))
         XCTAssertEqual(rules.memory.limit, Threshold(op: .greaterThan, value: 0.20))
-        XCTAssertEqual(rules.memory.swapUsedBytesAbove, 1 << 30)
+        XCTAssertEqual(rules.memory.swapOutBytesPerSecondAbove, 1_048_576)
 
         XCTAssertEqual(rules.memoryCritical.watch, Threshold(op: .greaterThan, value: 0))
         XCTAssertEqual(rules.memoryCritical.limit, Threshold(op: .atLeast, value: 0.02))

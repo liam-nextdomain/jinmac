@@ -44,7 +44,10 @@ public struct ResourceRule: Sendable, Equatable, Decodable {
     public let limit: Threshold
 
     // 신호 매개변수. 자원마다 쓰는 것만 채운다
-    public let swapUsedBytesAbove: UInt64?
+
+    /// 누적 스왑 아웃의 구간 증가량을 실제 경과 시간으로 나눈 값의 기준 (요구사항 14.3a).
+    /// 스왑 사용량은 압박이 풀린 뒤에도 남으므로 신호로 쓰지 않는다
+    public let swapOutBytesPerSecondAbove: Double?
     public let utilizationAtLeast: Double?
     public let sustainSeconds: Double?
     public let frequencyDropAtLeast: Double?
