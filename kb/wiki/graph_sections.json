@@ -6,7 +6,7 @@
   "stats": {
     "sections": 46,
     "symbols": 43,
-    "edges": 260
+    "edges": 268
   },
   "sections": [
     {
@@ -329,7 +329,7 @@
       "num": "13",
       "heading": "Development stages",
       "line_start": 401,
-      "line_end": 419,
+      "line_end": 426,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-02",
@@ -356,8 +356,8 @@
       "level": 2,
       "num": "14",
       "heading": "Decisions and review notes (2026-09-17)",
-      "line_start": 420,
-      "line_end": 430,
+      "line_start": 427,
+      "line_end": 437,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -368,17 +368,17 @@
       "level": 3,
       "num": "14.1",
       "heading": "Decisions",
-      "line_start": 431,
-      "line_end": 455,
+      "line_start": 438,
+      "line_end": 464,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-32",
+        "F-30",
+        "F-34",
         "F-01",
         "F-11",
         "F-20",
         "F-21",
-        "F-30",
-        "F-34",
         "F-40",
         "F-44",
         "F-50",
@@ -408,8 +408,8 @@
       "level": 3,
       "num": "14.2",
       "heading": "Review notes: collection",
-      "line_start": 456,
-      "line_end": 459,
+      "line_start": 465,
+      "line_end": 468,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -420,8 +420,8 @@
       "level": 3,
       "num": "14.2a",
       "heading": "F-02: read the memory pressure level on every sample",
-      "line_start": 460,
-      "line_end": 471,
+      "line_start": 469,
+      "line_end": 480,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-02"
@@ -434,8 +434,8 @@
       "level": 3,
       "num": "14.2b",
       "heading": "F-05: macOS has no I/O wait metric",
-      "line_start": 472,
-      "line_end": 485,
+      "line_start": 481,
+      "line_end": 494,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-05"
@@ -448,8 +448,8 @@
       "level": 3,
       "num": "14.2c",
       "heading": "F-06: throttling cannot be judged from frequency and temperature alone",
-      "line_start": 486,
-      "line_end": 499,
+      "line_start": 495,
+      "line_end": 508,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-06"
@@ -462,8 +462,8 @@
       "level": 3,
       "num": "14.2d",
       "heading": "F-09, F-23: usage of processes owned by other accounts may be unreadable with ordinary privileges",
-      "line_start": 500,
-      "line_end": 515,
+      "line_start": 509,
+      "line_end": 524,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-09",
@@ -478,8 +478,8 @@
       "level": 3,
       "num": "14.2e",
       "heading": "F-04: find GPU statistics through the parent class IOAccelerator",
-      "line_start": 516,
-      "line_end": 525,
+      "line_start": 525,
+      "line_end": 534,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-04"
@@ -492,8 +492,8 @@
       "level": 3,
       "num": "14.2f",
       "heading": "F-23: do not drop work left running while away from the machine",
-      "line_start": 526,
-      "line_end": 537,
+      "line_start": 535,
+      "line_end": 546,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-23"
@@ -506,8 +506,8 @@
       "level": 3,
       "num": "14.3",
       "heading": "Review notes: verdict criteria",
-      "line_start": 538,
-      "line_end": 541,
+      "line_start": 547,
+      "line_end": 550,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -518,8 +518,8 @@
       "level": 3,
       "num": "14.3a",
       "heading": "§5 memory signal: look at swap growth instead of swap used",
-      "line_start": 542,
-      "line_end": 551,
+      "line_start": 551,
+      "line_end": 560,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -530,8 +530,8 @@
       "level": 3,
       "num": "14.3b",
       "heading": "§5 auxiliary rule: do not judge intended full load from the frontmost app alone",
-      "line_start": 552,
-      "line_end": 564,
+      "line_start": 561,
+      "line_end": 573,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-08",
@@ -546,8 +546,8 @@
       "level": 3,
       "num": "14.3c",
       "heading": "§5 thermal row: normalize the counts by active time",
-      "line_start": 565,
-      "line_end": 573,
+      "line_start": 574,
+      "line_end": 582,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-01"
@@ -560,8 +560,8 @@
       "level": 3,
       "num": "14.3d",
       "heading": "§13: there are no verifiable acceptance criteria",
-      "line_start": 574,
-      "line_end": 586,
+      "line_start": 583,
+      "line_end": 595,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -572,8 +572,8 @@
       "level": 3,
       "num": "14.4",
       "heading": "Review notes: on-device AI",
-      "line_start": 587,
-      "line_end": 590,
+      "line_start": 596,
+      "line_end": 599,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -584,8 +584,8 @@
       "level": 3,
       "num": "14.4a",
       "heading": "A-04: the app inserts the numbers, not the model",
-      "line_start": 591,
-      "line_end": 603,
+      "line_start": 600,
+      "line_end": 612,
       "symbols_declared": [],
       "symbols_mentioned": [
         "A-04"
@@ -598,8 +598,8 @@
       "level": 3,
       "num": "14.4b",
       "heading": "F-41, A-06, A-07: decide whether to reveal the fallback to the user",
-      "line_start": 604,
-      "line_end": 616,
+      "line_start": 613,
+      "line_end": 625,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-41",
@@ -614,8 +614,8 @@
       "level": 3,
       "num": "14.4c",
       "heading": "A-01: check Korean support separately",
-      "line_start": 617,
-      "line_end": 626,
+      "line_start": 626,
+      "line_end": 635,
       "symbols_declared": [],
       "symbols_mentioned": [
         "A-01",
@@ -629,8 +629,8 @@
       "level": 3,
       "num": "14.5",
       "heading": "Review notes: distribution and non-functional",
-      "line_start": 627,
-      "line_end": 630,
+      "line_start": 636,
+      "line_end": 639,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -641,8 +641,8 @@
       "level": 3,
       "num": "14.5a",
       "heading": "F-11: with ad-hoc signing the login item can come undone after an update",
-      "line_start": 631,
-      "line_end": 644,
+      "line_start": 640,
+      "line_end": 653,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-11"
@@ -655,8 +655,8 @@
       "level": 3,
       "num": "14.5b",
       "heading": "§8: recording `top_process` easily pushes disk writes past 5MB a day",
-      "line_start": 645,
-      "line_end": 655,
+      "line_start": 654,
+      "line_end": 664,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -667,8 +667,8 @@
       "level": 3,
       "num": "14.5c",
       "heading": "F-10, F-22: decide whether 1-second sessions count against the resource budget",
-      "line_start": 656,
-      "line_end": 665,
+      "line_start": 665,
+      "line_end": 674,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-10",
@@ -682,8 +682,8 @@
       "level": 3,
       "num": "14.5d",
       "heading": "§10.2: state the Actions free-tier condition and SDK version",
-      "line_start": 666,
-      "line_end": 673,
+      "line_start": 675,
+      "line_end": 682,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -694,8 +694,8 @@
       "level": 3,
       "num": "14.5e",
       "heading": "§13: pair development stages with version numbers",
-      "line_start": 674,
-      "line_end": 681,
+      "line_start": 683,
+      "line_end": 690,
       "symbols_declared": [],
       "symbols_mentioned": []
     }
@@ -1470,6 +1470,21 @@
       "relation": "declares"
     },
     {
+      "from": "requirements#4.1",
+      "to": "requirements#14.2a",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "requirements#10.1",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#4.1",
+      "to": "requirements#14.5a",
+      "relation": "references"
+    },
+    {
       "from": "requirements",
       "to": "requirements#4.2",
       "relation": "contains"
@@ -1493,6 +1508,11 @@
       "from": "requirements#4.2",
       "to": "F-23",
       "relation": "declares"
+    },
+    {
+      "from": "requirements#4.2",
+      "to": "requirements#14.2f",
+      "relation": "references"
     },
     {
       "from": "requirements",
@@ -1635,6 +1655,11 @@
       "relation": "mentions"
     },
     {
+      "from": "requirements#5",
+      "to": "requirements#14.3a",
+      "relation": "references"
+    },
+    {
       "from": "requirements",
       "to": "requirements#6",
       "relation": "contains"
@@ -1723,6 +1748,11 @@
       "from": "requirements",
       "to": "requirements#10.1",
       "relation": "contains"
+    },
+    {
+      "from": "requirements#10.1",
+      "to": "requirements#14.5a",
+      "relation": "references"
     },
     {
       "from": "requirements#10.1",
@@ -1845,6 +1875,16 @@
       "relation": "mentions"
     },
     {
+      "from": "requirements#13",
+      "to": "requirements#14.5e",
+      "relation": "references"
+    },
+    {
+      "from": "requirements#13",
+      "to": "requirements#14.3d",
+      "relation": "references"
+    },
+    {
       "from": "requirements",
       "to": "requirements#14",
       "relation": "contains"
@@ -1886,6 +1926,16 @@
     },
     {
       "from": "requirements#14.1",
+      "to": "F-30",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-34",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
       "to": "F-01",
       "relation": "mentions"
     },
@@ -1902,16 +1952,6 @@
     {
       "from": "requirements#14.1",
       "to": "F-21",
-      "relation": "mentions"
-    },
-    {
-      "from": "requirements#14.1",
-      "to": "F-30",
-      "relation": "mentions"
-    },
-    {
-      "from": "requirements#14.1",
-      "to": "F-34",
       "relation": "mentions"
     },
     {

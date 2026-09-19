@@ -2,8 +2,8 @@
 id: requirements
 title: "JinMac, a workload checkup app for the Mac: development requirements"
 type: requirements
-version: "1.1"
-date: "2026-09-19"
+version: "1.2"
+date: "2026-09-20"
 lang: en
 parents: []
 entities:
@@ -65,7 +65,7 @@ entities:
     definition: "the promise that the app makes no network request other than the update check. collection, storage, analysis and report generation all finish on the user's machine"
   - name: ad-hoc-signing
     type: constraint
-    definition: "shipping signed with codesign -s - and no developer enrollment. users must get past the Gatekeeper warning themselves, and because the signature changes every build, the login item registration can come undone"
+    definition: "signing with no developer enrollment. users must get past the Gatekeeper warning themselves. a development build signed with codesign -s - changes its signature every build, which undoes the login item registration, so the released build is signed with a self-signed certificate that pins the designated requirement across versions"
     code: [scripts/release.sh]
   - name: xcodegen
     type: script
@@ -152,7 +152,7 @@ of each item (F-xx) is an identifier for issue tracking.
 | Code | Requirement | Note |
 | --- | --- | --- |
 | F-01 | Sample the metrics below at a default 5-second interval (configurable, 1 to 30 seconds) | Checkup period defaults to 14 days; the user picks 7/14/30 days |
-| F-02 | Memory: total, used, compressed, swap used, cumulative swap in/out, macOS memory pressure level (normal/warning/critical) | `host_statistics64`, `sysctl vm.swapusage`, `dispatch_source` memory pressure events |
+| F-02 | Memory: total, used, compressed, swap used, cumulative swap in/out, macOS memory pressure level (normal/warning/critical) | `host_statistics64`, `sysctl vm.swapusage`, pressure level read on every sample from `sysctl kern.memorystatus_vm_pressure_level` (§14.2a) |
 | F-03 | CPU: overall utilization, P-core and E-core utilization, current frequency | `host_processor_info`, IOReport (frequency) |
 | F-04 | GPU: utilization, memory in use | IOKit `AGXAccelerator` statistics |
 | F-05 | Disk: read/write throughput, I/O wait ratio, free space ratio | IOKit block storage statistics |
@@ -161,7 +161,7 @@ of each item (F-xx) is an identifier for issue tracking.
 | F-08 | Context: per sample, the frontmost app's bundle ID and whether the screen is locked or idle | `NSWorkspace.frontmostApplication`, `CGEventSource` idle time |
 | F-09 | Per sample, the names and usage of the top 5 CPU/memory processes | User data (file names, window titles) is not collected |
 | F-10 | The collector's own CPU usage averages under 1%, resident memory under 50MB | The measuring tool must not create load |
-| F-11 | Resume automatically after sleep or reboot. Login item registration only with the user's consent | `SMAppService.mainApp` |
+| F-11 | Resume automatically after sleep or reboot. Login item registration only with the user's consent. Check the registration on every launch and say so in the menu when it has come undone | `SMAppService.mainApp`. The registration is tied to the code signature, so the released build is signed with a self-signed certificate (§10.1, §14.5a) |
 
 ### 4.2 Workload tagging
 
@@ -170,7 +170,7 @@ of each item (F-xx) is an identifier for issue tracking.
 | F-20 | Automatically classify the frontmost app's bundle ID into a workload category via a built-in mapping table: video editing, photo and design, development (IDE and compiling), 3D and rendering, music production, virtual machines and containers, browsing and documents, games, AI and machine learning, other |
 | F-21 | The mapping table is bundled in the app as JSON, and the user can override categories directly |
 | F-22 | Manual session: when a span is marked with "start/end session" from the menu bar, that span is recorded at a 1-second interval and given a name |
-| F-23 | Idle state (no input for 5 minutes or more, screen locked) is excluded from the verdict denominator. Background load (indexing, backup) is shown as a separate item |
+| F-23 | Idle state (no input for 5 minutes or more, screen locked) is excluded from the verdict denominator. But if overall CPU utilization or GPU utilization stays at or above a threshold during that time (initial value 50%, in the bundled JSON), the time is classified as `무인 작업` ("unattended work") and kept in the denominator (§14.2f). Background load (indexing, backup) is shown as a separate item |
 
 ### 4.3 Rule engine
 
@@ -219,7 +219,7 @@ the bundled JSON (F-32).
 
 | Resource | Limit signal definition | Ample | Watch | Limit |
 | --- | --- | --- | --- | --- |
-| Memory | Memory pressure "warning" or above, or swap used > 1GB | < 5% | 5 to 20% | > 20% |
+| Memory | Memory pressure "warning" or above, or swap-out growth > 1MB per second. Swap used serves only as a supporting number (§14.3a) | < 5% | 5 to 20% | > 20% |
 | Memory (strong) | Memory pressure "critical" | 0% | < 2% | ≥ 2% |
 | CPU | Average P-core utilization ≥ 90% sustained for 30 seconds or more | < 10% | 10 to 30% | > 30% |
 | GPU | GPU utilization ≥ 90% sustained for 30 seconds or more | < 10% | 10 to 30% | > 30% |
@@ -338,7 +338,7 @@ distribution challenge is guiding users to get past the Gatekeeper warning thems
 | Constraint | Impact | Response |
 | --- | --- | --- |
 | No Developer ID signing or notarization | "Unidentified developer" warning on first launch. From macOS 15 the right-click → Open workaround is gone, and the user must press `그래도 열기` ("Open Anyway") in `시스템 설정 → 개인정보 보호 및 보안` (System Settings → Privacy & Security) | Installation guide with screenshots in README and release notes. Also give the terminal alternative `xattr -d com.apple.quarantine <앱경로>` |
-| No signature = no app integrity guarantee | Users cannot check whether the distributed file was tampered with | Publish a SHA-256 checksum with every release. Always apply ad-hoc signing (`codesign -s -`) (an unsigned binary is refused outright on Apple Silicon) |
+| No signature = no app integrity guarantee | Users cannot check whether the distributed file was tampered with | Publish a SHA-256 checksum with every release. Always sign (an unsigned binary is refused outright on Apple Silicon). The released build is signed with a self-signed certificate (`JinMac Self-Signed`) that pins the designated requirement across versions, and a development build without the certificate uses ad-hoc signing (`codesign -s -`). The certificate does not remove the Gatekeeper warning (§14.5a) |
 | No paid-account-only features such as iCloud, push or App Groups | This app does not use them | No impact |
 | No App Store distribution | No search exposure | Communities (such as `맥쓰사`, a Korean Mac user community) and GitHub are the only channels. The report card serves as promotion |
 | Use of Foundation Models | No special entitlement needed. Whether it works in an ad-hoc signed app needs verification on a real machine | Recorded as a risk in §12 |
@@ -413,7 +413,14 @@ can be trusted.
 | 4. Calibration | Tune thresholds and category mapping from community feedback, handle verdict error issues | The verdict error report rate falls |
 
 Each stage ends with one GitHub Release tag, and before starting the next stage it is shown to the
-community once to gauge the response.
+community once to gauge the response. The tags are `v0.1.0` for stage 1, `v0.2.0` for stage 2,
+`v0.3.0` for stage 3 and `v0.4.0` for stage 4. Stage 0 is not distributed to users, so it gets no
+tag, and a fix release between stages bumps the patch number, as in `v0.1.1`. The conditions for
+`v1.0.0` are written once the acceptance criteria are defined (§14.5e).
+
+The done-when of every stage includes passing its acceptance criteria. An acceptance criterion pairs
+a fixed sample fixture with an expected verdict, and is defined before that verdict is implemented
+(§14.3d).
 
 ---
 
@@ -423,7 +430,7 @@ community once to gauge the response.
 the project skeleton (§14.1) and the review notes from checking the draft against the APIs macOS
 actually provides (§14.2\~§14.5).
 
-Every review note is **awaiting decision**. When one is adopted, the affected section of the body is
+Every review note starts **awaiting decision**. When one is adopted, the affected section of the body is
 edited and the note's status becomes `채택 (날짜)` ("adopted (date)"). When one is rejected, one line
 of reasoning is left. Items marked "confirmed on this machine" were checked with ordinary user
 privileges on Apple M5, macOS 27.2 and Xcode 27.0.
@@ -440,6 +447,8 @@ privileges on Apple M5, macOS 27.2 and Xcode 27.0.
 | Minimum OS and AI | Deployment target is macOS 14, and Foundation Models is weak-linked | Follows the compatibility row of §8. Confirmed in an actual build that it links as `LC_LOAD_WEAK_DYLIB` |
 | Repository | Public GitHub repository | Using the Actions macOS runner of §10.2 at no extra cost requires a public repository |
 | Automatic updates (2026-09-19) | Defer adopting Sparkle until after paid Apple Developer Program enrollment. Until then, new versions ship only as a zip the user downloads from GitHub Releases to replace the app, and the app never checks for new versions | Removes Sparkle from the updates row of §9, step 3 of §10.2 and the scope of stage 3 in §13. The draft's `"개발자 등록 불필요"` ("no developer enrollment needed") in §9 does not hold for this app's signing setup. An app ad-hoc signed with Hardened Runtime on cannot load `Sparkle.framework`, which has no Team ID, because of Library Validation; avoiding that needs the `com.apple.security.cs.disable-library-validation` exception. Moja reached the same conclusion on 2026-09-18. While deferred, the app opens no network connection at all, so the `"업데이트 확인 제외"` ("except update checks") carve-out in §2 and §8 does not apply |
+| Default checkup period (2026-09-20) | Keep the draft's 14 days. The user picks 7/14/30 days, and can request a report mid-period once active time passes 10 hours (F-30, F-34) | Settles the default period among the open questions in §12. F-01 does not change. The costliest verdict error is the "RAM is enough" wrong answer (§12), so the choice favours the side less likely to miss heavy work done only now and then. The 7-day checkup in the stage 1 done-when of §13 is the developer picking 7 days |
+| Intel Macs (2026-09-20) | Unofficial support. Build Universal and let it work up to the memory verdict, but with no test machine the README says it is unverified. Items Intel cannot provide (P/E cores, frequency and so on) go missing, and verdicts relying on them are withheld (F-34) | Settles the scope of Intel support among the open questions in §12. Follows the compatibility row of §8, "Intel Macs work without the P/E-core and frequency items", without guaranteeing that it works |
 
 Modules and dependency direction:
 
@@ -467,7 +476,7 @@ Collection methods named in §4.1 and §4.2 that do not match the metrics macOS 
   (normal), 2 (warning) and 4 (critical), stored as the 0/1/2 of §7. Confirmed on this machine that
   it is readable with ordinary privileges. Keep `dispatch_source` as an auxiliary means of recording
   the moment the level changed more precisely than the sample interval.
-- Status: awaiting decision
+- Status: adopted (2026-09-20). Only the `sysctl` polling is adopted; the `dispatch_source` auxiliary is not kept. Verdicts are computed as a share of sample time, so a change time more precise than the sample interval has no use, and §7 has no column to hold it
 
 ### 14.2b F-05: macOS has no I/O wait metric
 
@@ -533,7 +542,7 @@ Collection methods named in §4.1 and §4.2 that do not match the metrics macOS 
 - Proposal: when CPU or GPU utilization is high, classify the time as `무인 작업` ("unattended
   work") rather than idle, even with no input, and keep it in the denominator. The utilization
   threshold goes into `rules.json`.
-- Status: awaiting decision
+- Status: adopted (2026-09-20). The initial threshold is overall CPU utilization or GPU utilization of 50% or more. Background work such as Spotlight indexing usually stays below it and is filtered out, while builds and renders stay in the denominator
 
 ### 14.3 Review notes: verdict criteria
 
@@ -547,7 +556,7 @@ Notes on the verdict criteria of §5 and the completion criteria of §13.
   of the day and the share is inflated.
 - Proposal: count as a signal only the samples where the increment of the cumulative `swap_out`
   exceeds a threshold. Keep swap used itself in the report as a supporting number.
-- Status: awaiting decision
+- Status: adopted (2026-09-20). The initial threshold is 1MB per second. The increment over a sample interval is divided by the actual elapsed time before comparing, so 1-second sessions and 5-second samples share one threshold and a sleep gap never becomes a signal. Recalibrate after the 7-day checkup
 
 ### 14.3b §5 auxiliary rule: do not judge intended full load from the frontmost app alone
 
@@ -582,7 +591,7 @@ Notes on the verdict criteria of §5 and the completion criteria of §13.
   expected verdicts. For example: "a 14-day fixture where memory pressure warning covers 21% of
   active time is judged memory limit". When a new identifier family is created, add it to
   `SYM_PREFIXES` in `scripts/kb.swift`.
-- Status: awaiting decision
+- Status: adopted (2026-09-20). The criteria are defined not before stage 1 starts but right before the memory verdict is implemented. What they protect is the verdict, and the collection and storage work ahead of it does not touch the verdict. The identifier family (`AC-01` form) is added to `SYM_PREFIXES` when the acceptance criteria document is created
 
 ### 14.4 Review notes: on-device AI
 
@@ -640,7 +649,7 @@ Notes on §8, §10 and §13.
 - Proposal: check the registration on every launch, and say so in the menu when it has come undone.
   Once Sparkle is adopted (§14.1), postpone installing an update while a checkup is in progress until
   the checkup ends.
-- Status: awaiting decision
+- Status: adopted with a different method (2026-09-20). Checking and notifying leaves the cause in place, so, as Moja does, the released build is signed with a self-signed certificate (`JinMac Self-Signed`). The designated requirement then becomes `identifier "dev.liampark.jinmac" and certificate leaf H"..."` instead of a cdhash, and stays the same across versions. Moja confirmed on 2026-09-18 that the login item registration survived replacing the installed app, and `SMAppService` worked even though the certificate's root is untrusted. The proposal to check the registration on every launch and say so in the menu is kept too, against a lost certificate or an installed ad-hoc build. The stage 0 Foundation Models check is also done with this release signature. The certificate does not remove the Gatekeeper warning and carries no Team ID, so the Sparkle deferral in §14.1 is unchanged. The proposal to postpone updates during a checkup is revisited when Sparkle is adopted
 
 ### 14.5b §8: recording `top_process` easily pushes disk writes past 5MB a day
 
@@ -678,4 +687,4 @@ Notes on §8, §10 and §13.
   not distributed to users, so it gets no tag. `MARKETING_VERSION` in `project.yml` starts at `0.1.0`
   to match the stage 1 goal. The conditions for `v1.0.0` are written after the acceptance criteria
   proposed in §14.3d are defined.
-- Status: awaiting decision
+- Status: adopted (2026-09-20). A fix release between stages bumps the patch number, as in `v0.1.1`

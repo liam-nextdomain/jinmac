@@ -15,8 +15,8 @@
       "type": "document",
       "doc_type": "requirements",
       "title": "JinMac, a workload checkup app for the Mac: development requirements",
-      "version": "1.1",
-      "date": "2026-09-19",
+      "version": "1.2",
+      "date": "2026-09-20",
       "path": "spec/requirements.en.md",
       "tags": [
         "requirements",
@@ -115,7 +115,7 @@
       "id": "ad-hoc-signing",
       "type": "entity",
       "entity_type": "constraint",
-      "definition": "shipping signed with codesign -s - and no developer enrollment. users must get past the Gatekeeper warning themselves, and because the signature changes every build, the login item registration can come undone"
+      "definition": "signing with no developer enrollment. users must get past the Gatekeeper warning themselves. a development build signed with codesign -s - changes its signature every build, which undoes the login item registration, so the released build is signed with a self-signed certificate that pins the designated requirement across versions"
     },
     {
       "id": "xcodegen",
