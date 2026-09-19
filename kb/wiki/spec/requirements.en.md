@@ -2,8 +2,8 @@
 id: requirements
 title: "JinMac, a workload checkup app for the Mac: development requirements"
 type: requirements
-version: "1.0"
-date: "2026-09-17"
+version: "1.1"
+date: "2026-09-19"
 lang: en
 parents: []
 entities:
@@ -434,11 +434,12 @@ privileges on Apple M5, macOS 27.2 and Xcode 27.0.
 | --- | --- | --- |
 | App name | JinMac. Bundle ID `dev.liampark.jinmac` | Settles the app name among the open questions in §12. The report card design is still open |
 | Data path | `~/Library/Application Support/JinMac/jinmac.sqlite` | Fills in the `<앱이름>` placeholder in §7 |
-| SQLite access | Use the system SQLite3 directly instead of GRDB | Changes the storage row of §9. With 7 tables and mostly batch inserts and aggregate queries, a thin wrapper is enough. The only third-party dependency left is Sparkle, to be added in stage 3 |
+| SQLite access | Use the system SQLite3 directly instead of GRDB | Changes the storage row of §9. With 7 tables and mostly batch inserts and aggregate queries, a thin wrapper is enough. This brings third-party dependencies to zero. Sparkle, the only candidate, is deferred under the Automatic updates row below |
 | Code structure | XcodeGen `project.yml` and a local SwiftPM package `CoreKit`. Seven modules inside the package, with the dependency direction enforcing design constraints | Supplements §9. The module layout is in the table below |
 | Initial grade caps | `rules.json` has a per-resource `max_grade`: only memory is `limit`, the rest are `watch` | The mitigation wording in §12 appears neither in the §5 table nor in F-32, so it moves into the rule file |
 | Minimum OS and AI | Deployment target is macOS 14, and Foundation Models is weak-linked | Follows the compatibility row of §8. Confirmed in an actual build that it links as `LC_LOAD_WEAK_DYLIB` |
 | Repository | Public GitHub repository | Using the Actions macOS runner of §10.2 at no extra cost requires a public repository |
+| Automatic updates (2026-09-19) | Defer adopting Sparkle until after paid Apple Developer Program enrollment. Until then, new versions ship only as a zip the user downloads from GitHub Releases to replace the app, and the app never checks for new versions | Removes Sparkle from the updates row of §9, step 3 of §10.2 and the scope of stage 3 in §13. The draft's `"개발자 등록 불필요"` ("no developer enrollment needed") in §9 does not hold for this app's signing setup. An app ad-hoc signed with Hardened Runtime on cannot load `Sparkle.framework`, which has no Team ID, because of Library Validation; avoiding that needs the `com.apple.security.cs.disable-library-validation` exception. Moja reached the same conclusion on 2026-09-18. While deferred, the app opens no network connection at all, so the `"업데이트 확인 제외"` ("except update checks") carve-out in §2 and §8 does not apply |
 
 Modules and dependency direction:
 
@@ -637,7 +638,8 @@ Notes on §8, §10 and §13.
   mid-checkup, data is missing after the next reboot, and the user does not find out until the
   report arrives.
 - Proposal: check the registration on every launch, and say so in the menu when it has come undone.
-  While a checkup is in progress, postpone installing Sparkle updates until the checkup ends.
+  Once Sparkle is adopted (§14.1), postpone installing an update while a checkup is in progress until
+  the checkup ends.
 - Status: awaiting decision
 
 ### 14.5b §8: recording `top_process` easily pushes disk writes past 5MB a day

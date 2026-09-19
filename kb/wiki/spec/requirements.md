@@ -2,8 +2,8 @@
 id: requirements
 title: "JinMac 맥 작업 부하 검진 앱: 개발 요구사항"
 type: requirements
-version: "1.0"
-date: "2026-09-17"
+version: "1.1"
+date: "2026-09-19"
 parents: []
 entities:
   - name: collector
@@ -388,11 +388,12 @@ Apple M5, macOS 27.2, Xcode 27.0 환경에서 일반 사용자 권한으로 확�
 | --- | --- | --- |
 | 앱 이름 | JinMac. 번들 ID는 `dev.liampark.jinmac` | 12장 미결 사항 중 앱 이름을 정한다. 리포트 카드 디자인은 아직 미결이다 |
 | 데이터 경로 | `~/Library/Application Support/JinMac/jinmac.sqlite` | 7장의 `<앱이름>` 자리를 채운다 |
-| SQLite 접근 | GRDB 대신 시스템 SQLite3를 직접 쓴다 | 9장 저장 항목을 바꾼다. 테이블 7개에 배치 삽입과 집계 쿼리가 대부분이라 얇은 래퍼로 충분하다. 서드파티 의존성은 3단계에서 추가할 Sparkle 하나만 남는다 |
+| SQLite 접근 | GRDB 대신 시스템 SQLite3를 직접 쓴다 | 9장 저장 항목을 바꾼다. 테이블 7개에 배치 삽입과 집계 쿼리가 대부분이라 얇은 래퍼로 충분하다. 이로써 서드파티 의존성은 0개다. 유일한 후보였던 Sparkle은 아래 자동 업데이트 항목에서 보류했다 |
 | 코드 구조 | XcodeGen `project.yml`과 로컬 SwiftPM 패키지 `CoreKit`. 패키지 안에 모듈 7개를 두고, 의존 방향으로 설계 제약을 강제한다 | 9장을 보강한다. 모듈 구성은 아래 표에 있다 |
 | 초기 등급 상한 | `rules.json`에 자원별 `max_grade`를 두고, 메모리만 `limit`이고 나머지는 `watch`다 | 12장 리스크 완화 문구가 5장 표와 F-32 어디에도 반영되어 있지 않아 규칙 파일로 옮긴다 |
 | 최소 OS와 AI | 배포 대상은 macOS 14이고 Foundation Models는 약한 링크로 연결한다 | 8장 호환성 항목을 따른다. 실제 빌드에서 `LC_LOAD_WEAK_DYLIB`로 연결되는 것을 확인했다 |
 | 저장소 | GitHub 공개 저장소 | 10.2절의 Actions macOS 러너를 추가 비용 없이 쓰려면 공개 저장소여야 한다 |
+| 자동 업데이트 (2026-09-19) | Sparkle 도입을 Apple Developer Program 유료 등록 이후로 미룬다. 그때까지 새 버전은 사용자가 GitHub Releases에서 zip을 받아 앱을 교체하는 방식으로만 배포하고, 앱은 새 버전을 확인하지 않는다 | 9장 업데이트 항목, 10.2절 3번 단계, 13장 3단계 범위에서 Sparkle을 뺀다. 9장이 적은 "개발자 등록 불필요"는 이 앱의 서명 구성에서 성립하지 않는다. ad-hoc 서명에 Hardened Runtime을 켠 앱은 Library Validation 때문에 Team ID가 없는 `Sparkle.framework`를 로드하지 못하고, 피하려면 `com.apple.security.cs.disable-library-validation` 예외를 넣어야 한다. Moja도 2026-09-18에 같은 결론을 냈다. 보류하는 동안 앱은 네트워크 연결을 하나도 열지 않으므로 2장과 8장의 "업데이트 확인 제외"는 해당하지 않는다 |
 
 모듈과 의존 방향:
 
@@ -517,7 +518,7 @@ Apple M5, macOS 27.2, Xcode 27.0 환경에서 일반 사용자 권한으로 확�
 
 - 원문: F-11은 `SMAppService.mainApp`으로 로그인 항목을 등록하고, 10.1절은 ad-hoc 서명으로 배포한다.
 - 문제: `SMAppService` 등록은 앱의 코드 서명에 묶인다. ad-hoc 서명은 빌드할 때마다 달라지므로, 업데이트로 앱을 교체하면 자동 실행이 조용히 꺼질 수 있다. 같은 방식으로 배포하는 Moja의 개발 문서가 이 주의 사항을 적어 두었다. 검진 도중 이렇게 되면 재부팅 이후 데이터가 비고, 사용자는 리포트를 받을 때까지 그 사실을 모른다.
-- 제안: 실행할 때마다 등록 상태를 확인하고, 풀려 있으면 메뉴에 알린다. 검진이 진행 중일 때는 Sparkle 업데이트 설치를 검진이 끝난 뒤로 미룬다.
+- 제안: 실행할 때마다 등록 상태를 확인하고, 풀려 있으면 메뉴에 알린다. Sparkle을 도입한 뒤에는(14.1) 검진이 진행 중일 때 업데이트 설치를 검진이 끝난 뒤로 미룬다.
 - 상태: 결정 대기
 
 ### 14.5b 8장: `top_process`까지 기록하면 디스크 쓰기 하루 5MB를 넘기기 쉽다
