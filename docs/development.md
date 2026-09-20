@@ -83,8 +83,27 @@ ditto build/export/JinMac.app /Applications/JinMac.app
 > 서명은 빌드할 때마다 달라지므로, 앱을 교체한 다음 자동 실행이 꺼져 있을 수 있습니다
 > ([요구사항 14.5a](../kb/wiki/spec/requirements.md)).
 
+## 0단계 프로브
+
+비공개 API와 권한이 이 기기에서 실제로 되는지 확인하는 스크립트입니다. 앱에 들어가는 코드가
+아니라 검증용이고, 출력이 그대로 원자료가 됩니다.
+
+```
+swift scripts/probes/probe-smc.swift       # SMC·IOHID 온도와 팬 키
+swift scripts/probes/probe-ioreport.swift  # IOReport CPU 주파수 채널과 DVFS 표
+swift scripts/probes/probe-rusage.swift    # 다른 계정 소유 프로세스의 사용량
+```
+
+세 스크립트 모두 관리자 권한이 필요 없습니다. 결과를 원자료로 남길 때는 출력을
+`kb/raw/probes/YYYY-MM-DD-이름.md`로 그대로 보냅니다. 출처 헤더는 스크립트가 직접 찍습니다.
+
+프로브는 이 기기에서 도는 프로세스 이름을 찍지 않습니다. 이름을 밝히는 대상은
+`probe-rusage.swift`의 `NAMED_TARGETS`에 적은 시스템 데몬뿐입니다. 대상을 늘릴 때는 그 이름이
+사용자가 무엇을 쓰는지 드러내지 않는지 먼저 따져야 합니다.
+
 ## 문서
 
+- [kb/wiki/research/probe-results.md](../kb/wiki/research/probe-results.md): 0단계 프로브 결과, 센서와 권한
 - [kb/wiki/spec/requirements.md](../kb/wiki/spec/requirements.md): 개발 요구사항, 결정과 검토 의견
 - [kb/raw/references/2026-09-17-requirements-draft.md](../kb/raw/references/2026-09-17-requirements-draft.md): 요구사항 초안 원문
 - [kb/wiki/index.md](../kb/wiki/index.md): 지식 베이스 전체 색인
@@ -96,8 +115,8 @@ v0.1.0은 요구사항 13장 1단계(MVP)의 완료 기준을 채워야 합니�
 먼저 끝냅니다.
 
 <!-- roadmap:release-checklist:start -->
-- [ ] ad-hoc 서명 앱에서 Foundation Models 호출이 되는지 실기기에서 확인
-- [ ] SMC 온도와 IOReport 주파수를 일반 권한으로 읽을 수 있는지 확인
+- [ ] 자체 서명 인증서로 서명한 설치본에서 Foundation Models 호출이 되는지 실기기에서 확인
+- [x] SMC 온도와 IOReport 주파수를 일반 권한으로 읽을 수 있는지 확인
 - [ ] 메모리·CPU 수집과 SQLite 저장
 - [ ] 메모리 판정과 템플릿 한국어 리포트
 - [ ] 리포트 카드 PNG 내보내기
