@@ -2,7 +2,7 @@
 id: probe-results
 title: "Stage 0 probe results: sensors and permissions"
 type: measurement
-version: "1.0"
+version: "1.5"
 date: "2026-09-20"
 parents:
   - id: requirements
@@ -34,6 +34,7 @@ tags: ["measurement", "probe", "collector", "apple-silicon", "private-api"]
 > Raw: [2026-09-20-thermal-sensors.md](../../raw/probes/2026-09-20-thermal-sensors.md)
 > Raw: [2026-09-20-ioreport-cpu.md](../../raw/probes/2026-09-20-ioreport-cpu.md)
 > Raw: [2026-09-20-proc-rusage.md](../../raw/probes/2026-09-20-proc-rusage.md)
+> Raw: [2026-09-20-foundation-models.md](../../raw/probes/2026-09-20-foundation-models.md)
 
 This is what a real machine says about the sensor and permission items among the three things
 requirements §13 asks stage 0 to verify. The Foundation Models check needs a distribution
@@ -51,9 +52,10 @@ raw documents above.
 | Can Apple Silicon temperatures be read through IOHIDEventSystem | Yes. 46 of 47 temperature sensors returned a value | F-06 |
 | Can the IOReport CPU frequency channels be read with ordinary privileges | Yes, though the library is not where convention says it is | F-03 |
 | Can the usage of processes owned by other accounts be read | **No.** It is `EPERM`, without exception | F-09, F-23 |
+| Does Foundation Models generate prose in a signed, installed build | Yes. All three runs came out in Korean | A-01 |
 | Per-generation sensor key lists for M1\~M4 | Not obtained. There is only one machine, an M5 | requirements §12 |
 
-Three items work and one is blocked. The blocked one is what requirements §14.2d already expected,
+Four items work and one is blocked. The blocked one is what requirements §14.2d already expected,
 and this document does not decide that review note. It only adds the numbers to decide it with.
 
 ## 2. Temperature and fans (F-06)
@@ -217,7 +219,55 @@ Code that handles CPU time must go through `mach_timebase_info`. The mistake rai
 merely divides the value by 42, so it is worth making a wrong unit conversion something a test can
 catch.
 
-## 5. What this hands to implementation
+## 5. The signed installed build and prose generation (A-01)
+
+Unlike the three probes above, this one was run by the app itself rather than by a script. The build
+signed with the self-signed certificate was installed into `/Applications` and launched with the
+`--probe-narrator` argument.
+
+### 5.1 The designated requirement stays fixed between builds
+
+Two releases were built from different code and compared. The zip's SHA-256 differed each time; the
+designated requirement did not.
+
+```text
+identifier "dev.liampark.jinmac" and certificate leaf = H"c5555fcd..."
+```
+
+With ad-hoc signing a `cdhash` stands in that place, and its value changes whenever the code does. A
+fixed value is what keeps `SMAppService` login item registration alive across releases (F-11). This
+is what requirements §14.5a was after.
+
+The certificate does not make the Gatekeeper warning go away. The install guide is still needed.
+
+### 5.2 An installed build produces Korean prose
+
+Three runs, three successes. They took 1.04, 1.13 and 2.01 seconds, comfortably inside A-06's
+10-second target. This is the minimal path that produces one sentence, though; the real
+implementation splits the call per resource (A-03), and the target time has to be measured again
+against that shape.
+
+The risk "Foundation Models may not work in an ad-hoc signed app" is recorded in requirements §12. On a
+certificate-signed installed build that risk did not materialize. An ad-hoc build was not checked,
+and now that the release is signed with a certificate there is no reason to check one.
+
+### 5.3 The same input gives different prose every time
+
+All three outputs differed.
+
+```text
+자원인 메모리에서 한계 신호가 활성 시간에서 차지한 비율이 23%로 나타났습니다.
+메모리 자원의 한계 신호가 활성 시간에서 차지한 비율은 23%입니다.
+자원인 메모리의 경우 한계 신호가 활성 시간에서 차지한 비율이 23%로 나타났습니다.
+```
+
+(All three say the limit signal took 23% of active time on memory.) `23%`, `메모리` ("memory") and
+`한계` ("limit") survived in all three, but nothing guarantees that. These three lines are why the
+rule that AI decides no grade and no number (ch. 2) exists, and why A-04 verifies the numbers in
+generated prose. Prose bound for the report has to arrive as a `@Generable` struct (A-03); the free
+string path the probe used must not be promoted as it is.
+
+## 6. What this hands to implementation
 
 | What the probe established | Where it goes |
 |---|---|
@@ -227,8 +277,10 @@ catch.
 | Keep fan RPM's missing and 0 apart | Stage 2 thermal collection |
 | Convert CPU time through `mach_timebase_info` | Stage 1 CPU collection (F-03), top-process collection |
 | Group the remainder that cannot be measured individually | After requirements §14.2d is decided |
+| Verify the numbers in generated prose | Stage 2 Narrator (A-04) |
+| Check that the designated requirement matches the previous release | Every release |
 
-## 6. Open questions
+## 7. Open questions
 
 - The temperature sensor key lists for M1\~M4. They need either the machines or user reports
   (requirements §12).

@@ -15,7 +15,7 @@
       "type": "document",
       "doc_type": "measurement",
       "title": "Stage 0 probe results: sensors and permissions",
-      "version": "1.0",
+      "version": "1.5",
       "date": "2026-09-20",
       "path": "research/probe-results.en.md",
       "tags": [

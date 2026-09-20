@@ -8,7 +8,7 @@ brew install xcodegen          # 빌드 도구. 앱 자체의 서드파티 의�
 ./scripts/build.sh             # 빌드 → build/Build/Products/Debug/JinMac.app
 ./scripts/test.sh              # CoreKit 테스트 + 지식 베이스 자체 검사
 ./scripts/test.sh VerdictTests # 스위트 하나만
-./scripts/release.sh           # 릴리스 빌드 → ad-hoc 서명 → zip + SHA-256
+./scripts/release.sh           # 릴리스 빌드 → 자체 서명 인증서 → zip + SHA-256
 open JinMac.xcodeproj          # Xcode에서 열기 (build.sh가 먼저 만들어 둡니다)
 ```
 
@@ -79,9 +79,64 @@ osascript -e 'quit app "JinMac"'
 ditto build/export/JinMac.app /Applications/JinMac.app
 ```
 
-> **로그인 항목을 확인하세요**: `SMAppService`는 등록을 앱의 코드 서명에 묶습니다. ad-hoc
-> 서명은 빌드할 때마다 달라지므로, 앱을 교체한 다음 자동 실행이 꺼져 있을 수 있습니다
-> ([요구사항 14.5a](../kb/wiki/spec/requirements.md)).
+> **로그인 항목을 확인하세요**: `SMAppService` 등록은 앱의 코드 서명, 정확히는 지정
+> 요구사항(designated requirement)에 묶입니다. ad-hoc 서명에는 Team ID가 없어서 이 값이
+> 바이너리의 cdhash로 잡히고, cdhash는 코드가 바뀌면 함께 바뀝니다. 따라서 ad-hoc 빌드로
+> 교체하면 자동 실행이 꺼지고, 재부팅한 뒤 수집이 재개되지 않습니다. 교체한 뒤 메뉴에서 한 번
+> 확인하시기 바랍니다. 아래 "배포 서명 인증서"를 설정해 두면 배포본에서는 이 문제가 생기지
+> 않습니다 ([요구사항 14.5a](../kb/wiki/spec/requirements.md)).
+
+## 배포 서명 인증서
+
+`scripts/release.sh`는 키체인에 `JinMac Self-Signed` 인증서가 있으면 그것으로 서명하고, 없으면
+ad-hoc으로 떨어지면서 경고를 남깁니다. **ad-hoc으로 배포하면 그 배포본을 설치한 사용자는 다음
+릴리스에서 로그인 항목을 다시 허용해야 합니다.** JinMac은 1\~2주를 이어서 기록해야 판정이 나오는
+앱이라, 등록이 풀린 것을 모르면 구멍 난 데이터로 검진을 마치게 됩니다. 그러므로 배포 전에
+인증서를 한 번만 만들어 두어야 합니다.
+
+이 인증서는 Gatekeeper를 통과시켜 주지 않습니다. "확인되지 않은 개발자" 안내는 그대로 필요합니다.
+목적은 오로지 지정 요구사항을 버전 사이에 고정하는 것입니다.
+
+```sh
+openssl req -x509 -newkey rsa:2048 -days 3650 -nodes \
+  -keyout jinmac-signing.key -out jinmac-signing.crt \
+  -subj "/CN=JinMac Self-Signed" \
+  -addext "keyUsage=critical,digitalSignature" \
+  -addext "extendedKeyUsage=codeSigning"
+
+openssl pkcs12 -export -legacy -in jinmac-signing.crt -inkey jinmac-signing.key \
+  -name "JinMac Self-Signed" -out jinmac-signing.p12
+
+security import jinmac-signing.p12 -k ~/Library/Keychains/login.keychain-db \
+  -T /usr/bin/codesign
+```
+
+여기까지가 전부입니다. 키체인 접근에서 "항상 신뢰"로 바꿀 필요는 없습니다. 자체 서명 인증서는
+루트가 신뢰되지 않아 `security find-identity -v -p codesigning`이 0건으로 보고하지만
+(`CSSMERR_TP_NOT_TRUSTED`), `codesign`은 그 상태로도 정상적으로 서명하고
+`codesign --verify --strict`도 통과합니다. 2026-09-20에 이 기기에서 확인했습니다. 그래서
+`release.sh`의 인증서 탐지도 `-v`를 쓰지 않습니다.
+
+`.p12`를 만든 뒤에는 평문 개인 키(`jinmac-signing.key`)를 지우십시오. 암호 없는 키를 디스크에
+남겨 둘 이유가 없습니다.
+
+> **개인 키를 잃어버리면 모든 사용자의 로그인 항목이 한 번 더 초기화됩니다.**
+> `jinmac-signing.p12`를 암호 관리자나 오프라인 매체에 백업하십시오.
+
+관리자의 맥에서는 사본을 `signing/`에 두고 있습니다. `.gitignore`가 이 폴더와 `*.p12`, `*.key`,
+`*.crt`를 막고 있어 깃에 올라가지 않습니다. 다만 **`git clean -xdf`는 무시된 파일까지 지우므로 이
+폴더도 함께 사라집니다.** 그러니 `signing/`은 사본으로만 취급하고, 정본은 저장소 바깥에 따로
+두어야 합니다.
+
+### 릴리스마다 확인할 것
+
+`release.sh`가 출력하는 지정 요구사항 줄이 지난 릴리스와 같은지 확인하십시오.
+`cdhash`로 나오면 인증서가 적용되지 않은 것입니다.
+
+```text
+  지정 요구사항:
+    identifier "dev.liampark.jinmac" and certificate leaf = H"c5555fcd..."
+```
 
 ## 0단계 프로브
 
@@ -115,7 +170,7 @@ v0.1.0은 요구사항 13장 1단계(MVP)의 완료 기준을 채워야 합니�
 먼저 끝냅니다.
 
 <!-- roadmap:release-checklist:start -->
-- [ ] 자체 서명 인증서로 서명한 설치본에서 Foundation Models 호출이 되는지 실기기에서 확인
+- [x] 자체 서명 인증서로 서명한 설치본에서 Foundation Models 호출이 되는지 실기기에서 확인
 - [x] SMC 온도와 IOReport 주파수를 일반 권한으로 읽을 수 있는지 확인
 - [ ] 메모리·CPU 수집과 SQLite 저장
 - [ ] 메모리 판정과 템플릿 한국어 리포트
