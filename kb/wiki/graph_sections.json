@@ -4,11 +4,245 @@
     "companion": "graph.json"
   },
   "stats": {
-    "sections": 46,
+    "sections": 64,
     "symbols": 43,
-    "edges": 268
+    "edges": 312
   },
   "sections": [
+    {
+      "id": "probe-results#1",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 2,
+      "num": "1",
+      "heading": "Summary of results",
+      "line_start": 46,
+      "line_end": 58,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-06",
+        "F-03",
+        "F-09",
+        "F-23"
+      ]
+    },
+    {
+      "id": "probe-results#2",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 2,
+      "num": "2",
+      "heading": "Temperature and fans (F-06)",
+      "line_start": 59,
+      "line_end": 60,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-06"
+      ]
+    },
+    {
+      "id": "probe-results#2.1",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "2.1",
+      "heading": "Both paths open",
+      "line_start": 61,
+      "line_end": 75,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-06"
+      ]
+    },
+    {
+      "id": "probe-results#2.2",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "2.2",
+      "heading": "A successful read is not necessarily a temperature",
+      "line_start": 76,
+      "line_end": 84,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#2.3",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "2.3",
+      "heading": "A stopped fan and an unread fan are different",
+      "line_start": 85,
+      "line_end": 92,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#2.4",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "2.4",
+      "heading": "Byte order differs by data type",
+      "line_start": 93,
+      "line_end": 101,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#2.5",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "2.5",
+      "heading": "Per-generation key lists remain open",
+      "line_start": 102,
+      "line_end": 111,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#3",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 2,
+      "num": "3",
+      "heading": "CPU frequency (F-03)",
+      "line_start": 112,
+      "line_end": 113,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-03"
+      ]
+    },
+    {
+      "id": "probe-results#3.1",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "3.1",
+      "heading": "IOReport is not where the framework should be",
+      "line_start": 114,
+      "line_end": 122,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#3.2",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "3.2",
+      "heading": "Bridging the channel dictionary to a Swift dictionary kills the process",
+      "line_start": 123,
+      "line_end": 132,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#3.3",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "3.3",
+      "heading": "Frequency needs two sources to line up",
+      "line_start": 133,
+      "line_end": 153,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#3.4",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "3.4",
+      "heading": "Residency is counted in 24MHz ticks",
+      "line_start": 154,
+      "line_end": 167,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-03"
+      ]
+    },
+    {
+      "id": "probe-results#4",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 2,
+      "num": "4",
+      "heading": "Processes owned by other accounts (F-09, F-23)",
+      "line_start": 168,
+      "line_end": 169,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-09",
+        "F-23"
+      ]
+    },
+    {
+      "id": "probe-results#4.1",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "4.1",
+      "heading": "Only usage is blocked; names and owners are readable",
+      "line_start": 170,
+      "line_end": 186,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#4.2",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "4.2",
+      "heading": "The unmeasured share grows the more idle the machine is",
+      "line_start": 187,
+      "line_end": 206,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#4.3",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 3,
+      "num": "4.3",
+      "heading": "rusage times are not in nanoseconds",
+      "line_start": 207,
+      "line_end": 219,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
+    {
+      "id": "probe-results#5",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 2,
+      "num": "5",
+      "heading": "What this hands to implementation",
+      "line_start": 220,
+      "line_end": 230,
+      "symbols_declared": [],
+      "symbols_mentioned": [
+        "F-03"
+      ]
+    },
+    {
+      "id": "probe-results#6",
+      "doc": "probe-results",
+      "path": "research/probe-results.en.md",
+      "level": 2,
+      "num": "6",
+      "heading": "Open questions",
+      "line_start": 231,
+      "line_end": 237,
+      "symbols_declared": [],
+      "symbols_mentioned": []
+    },
     {
       "id": "requirements#1",
       "doc": "requirements",
@@ -847,6 +1081,10 @@
       "proposed": false,
       "declared_in": "requirements#4.1",
       "mentioned_in": [
+        "probe-results#1",
+        "probe-results#3",
+        "probe-results#3.4",
+        "probe-results#5",
         "requirements#13",
         "requirements#14.1"
       ],
@@ -858,6 +1096,14 @@
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
           "line": 22
+        },
+        {
+          "path": "scripts/probes/probe-ioreport.swift",
+          "line": 3
+        },
+        {
+          "path": "scripts/probes/probe-ioreport.swift",
+          "line": 10
         }
       ]
     },
@@ -907,6 +1153,9 @@
       "proposed": false,
       "declared_in": "requirements#4.1",
       "mentioned_in": [
+        "probe-results#1",
+        "probe-results#2",
+        "probe-results#2.1",
         "requirements#12",
         "requirements#14.1",
         "requirements#14.2c"
@@ -919,6 +1168,10 @@
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
           "line": 47
+        },
+        {
+          "path": "scripts/probes/probe-smc.swift",
+          "line": 4
         }
       ]
     },
@@ -968,11 +1221,18 @@
       "proposed": false,
       "declared_in": "requirements#4.1",
       "mentioned_in": [
+        "probe-results#1",
+        "probe-results#4",
         "requirements#14.1",
         "requirements#14.2d",
         "requirements#14.3b"
       ],
-      "cited_by": []
+      "cited_by": [
+        {
+          "path": "scripts/probes/probe-rusage.swift",
+          "line": 4
+        }
+      ]
     },
     {
       "id": "F-10",
@@ -1058,11 +1318,18 @@
       "proposed": false,
       "declared_in": "requirements#4.2",
       "mentioned_in": [
+        "probe-results#1",
+        "probe-results#4",
         "requirements#13",
         "requirements#14.2d",
         "requirements#14.2f"
       ],
-      "cited_by": []
+      "cited_by": [
+        {
+          "path": "scripts/probes/probe-rusage.swift",
+          "line": 4
+        }
+      ]
     },
     {
       "id": "F-30",
@@ -1389,6 +1656,201 @@
     }
   ],
   "edges": [
+    {
+      "from": "probe-results",
+      "to": "probe-results#1",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#1",
+      "to": "F-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results#1",
+      "to": "F-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results#1",
+      "to": "F-09",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results#1",
+      "to": "F-23",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results#1",
+      "to": "requirements#12",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results#1",
+      "to": "requirements#14.2d",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#2",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#2",
+      "to": "F-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#2.1",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#2.1",
+      "to": "F-06",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#2.2",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#2.3",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#2.4",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#2.5",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#2.5",
+      "to": "requirements#12",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#3",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#3",
+      "to": "F-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#3.1",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#3.2",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#3.3",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#3.3",
+      "to": "requirements#14.2c",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#3.4",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#3.4",
+      "to": "F-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#4",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#4",
+      "to": "F-09",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results#4",
+      "to": "F-23",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#4.1",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#4.1",
+      "to": "requirements#14.2d",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#4.2",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#4.2",
+      "to": "requirements#14.2d",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#4.3",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#5",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#5",
+      "to": "F-03",
+      "relation": "mentions"
+    },
+    {
+      "from": "probe-results#5",
+      "to": "requirements#14.2d",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results",
+      "to": "probe-results#6",
+      "relation": "contains"
+    },
+    {
+      "from": "probe-results#6",
+      "to": "requirements#12",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results#6",
+      "to": "requirements#14.2c",
+      "relation": "references"
+    },
+    {
+      "from": "probe-results#6",
+      "to": "requirements#14.2d",
+      "relation": "references"
+    },
     {
       "from": "requirements",
       "to": "requirements#1",
@@ -2505,6 +2967,16 @@
       "relation": "cites"
     },
     {
+      "from": "scripts/probes/probe-ioreport.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "scripts/probes/probe-ioreport.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
       "from": "CoreKit/Sources/Collector/Sampler.swift",
       "to": "F-04",
       "relation": "cites"
@@ -2535,6 +3007,11 @@
       "relation": "cites"
     },
     {
+      "from": "scripts/probes/probe-smc.swift",
+      "to": "F-06",
+      "relation": "cites"
+    },
+    {
       "from": "CoreKit/Sources/Collector/Sampler.swift",
       "to": "F-07",
       "relation": "cites"
@@ -2552,6 +3029,11 @@
     {
       "from": "CoreKit/Sources/Model/Sample.swift",
       "to": "F-08",
+      "relation": "cites"
+    },
+    {
+      "from": "scripts/probes/probe-rusage.swift",
+      "to": "F-09",
       "relation": "cites"
     },
     {
@@ -2572,6 +3054,11 @@
     {
       "from": "CoreKit/Sources/Workload/WorkloadCategory.swift",
       "to": "F-21",
+      "relation": "cites"
+    },
+    {
+      "from": "scripts/probes/probe-rusage.swift",
+      "to": "F-23",
       "relation": "cites"
     },
     {

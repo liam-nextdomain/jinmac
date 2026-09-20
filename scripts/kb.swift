@@ -75,6 +75,7 @@ let DEFAULT_TYPE_RANK = 9
 /// (.claude/rules/docs-kb.md).
 let DOC_LABELS: [(String, String)] = [
     ("REQUIREMENTS", "requirements"), ("requirements", "requirements"), ("요구사항", "requirements"),
+    ("probe-results", "probe-results"), ("프로브 결과", "probe-results"),
 ]
 
 /// 요구사항 식별자 계열. F-01~F-64(기능), A-01~A-09(온디바이스 AI).

@@ -4,12 +4,28 @@
     "companion": "graph_sections.json"
   },
   "stats": {
-    "documents": 1,
-    "entities": 16,
-    "code": 13,
-    "edges": 29
+    "documents": 2,
+    "entities": 20,
+    "code": 16,
+    "edges": 42
   },
   "nodes": [
+    {
+      "id": "probe-results",
+      "type": "document",
+      "doc_type": "measurement",
+      "title": "Stage 0 probe results: sensors and permissions",
+      "version": "1.0",
+      "date": "2026-09-20",
+      "path": "research/probe-results.en.md",
+      "tags": [
+        "measurement",
+        "probe",
+        "collector",
+        "apple-silicon",
+        "private-api"
+      ]
+    },
     {
       "id": "requirements",
       "type": "document",
@@ -26,6 +42,30 @@
         "rule-engine",
         "on-device-ai"
       ]
+    },
+    {
+      "id": "smc-thermal-keys",
+      "type": "entity",
+      "entity_type": "api",
+      "definition": "reading temperature and fan keys through the AppleSMC user client. it opens without administrator privileges and the key names are the sensor list itself, so a new chip generation means checking the key list again"
+    },
+    {
+      "id": "hid-temperature-sensors",
+      "type": "entity",
+      "entity_type": "api",
+      "definition": "the private path that reads Apple Silicon temperatures through IOHIDEventSystemClient. sensor names are human-readable strings, easier to interpret than four-character SMC keys, but some sensors return values outside any temperature range"
+    },
+    {
+      "id": "ioreport-frequency",
+      "type": "entity",
+      "entity_type": "api",
+      "definition": "the two-step path to CPU frequency. IOReport gives residency per DVFS state and the IORegistry pmgr node turns a state into a frequency; if either one shifts, the frequency goes missing"
+    },
+    {
+      "id": "unmeasurable-system-cpu",
+      "type": "entity",
+      "entity_type": "concept",
+      "definition": "CPU time spent by processes owned by other accounts, whose usage cannot be read individually. it is knowable only as the remainder of total usage minus the sum that could be read, and that remainder grows the more idle the machine is"
     },
     {
       "id": "collector",
@@ -220,6 +260,31 @@
       ]
     },
     {
+      "id": "scripts/probes/probe-ioreport.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "ioreport-frequency"
+      ]
+    },
+    {
+      "id": "scripts/probes/probe-rusage.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "unmeasurable-system-cpu"
+      ]
+    },
+    {
+      "id": "scripts/probes/probe-smc.swift",
+      "type": "code",
+      "lang": "swift",
+      "entities": [
+        "smc-thermal-keys",
+        "hid-temperature-sensors"
+      ]
+    },
+    {
       "id": "scripts/release.sh",
       "type": "code",
       "lang": "other",
@@ -229,6 +294,39 @@
     }
   ],
   "edges": [
+    {
+      "from": "probe-results",
+      "to": "requirements",
+      "relation": "derives_from",
+      "version": "1.2",
+      "sections": [
+        "12",
+        "13",
+        "14.2c",
+        "14.2d"
+      ],
+      "note": "answers, by measurement on a real machine, what ch. 13 lists for stage 0 verification and what ch. 12 leaves open. §14.2c and §14.2d stay awaiting decision; this only adds evidence to judge them by"
+    },
+    {
+      "from": "probe-results",
+      "to": "smc-thermal-keys",
+      "relation": "defines"
+    },
+    {
+      "from": "probe-results",
+      "to": "hid-temperature-sensors",
+      "relation": "defines"
+    },
+    {
+      "from": "probe-results",
+      "to": "ioreport-frequency",
+      "relation": "defines"
+    },
+    {
+      "from": "probe-results",
+      "to": "unmeasurable-system-cpu",
+      "relation": "defines"
+    },
     {
       "from": "requirements",
       "to": "collector",
@@ -370,9 +468,49 @@
       "relation": "implements"
     },
     {
+      "from": "scripts/probes/probe-ioreport.swift",
+      "to": "ioreport-frequency",
+      "relation": "implements"
+    },
+    {
+      "from": "scripts/probes/probe-rusage.swift",
+      "to": "unmeasurable-system-cpu",
+      "relation": "implements"
+    },
+    {
+      "from": "scripts/probes/probe-smc.swift",
+      "to": "smc-thermal-keys",
+      "relation": "implements"
+    },
+    {
+      "from": "scripts/probes/probe-smc.swift",
+      "to": "hid-temperature-sensors",
+      "relation": "implements"
+    },
+    {
       "from": "scripts/release.sh",
       "to": "ad-hoc-signing",
       "relation": "implements"
+    },
+    {
+      "from": "probe-results",
+      "to": "requirements#12",
+      "relation": "derives_from_section"
+    },
+    {
+      "from": "probe-results",
+      "to": "requirements#13",
+      "relation": "derives_from_section"
+    },
+    {
+      "from": "probe-results",
+      "to": "requirements#14.2c",
+      "relation": "derives_from_section"
+    },
+    {
+      "from": "probe-results",
+      "to": "requirements#14.2d",
+      "relation": "derives_from_section"
     }
   ]
 }

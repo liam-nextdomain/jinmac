@@ -14,6 +14,14 @@ JinMac이 무엇을 해야 하는지, 그리고 그것을 만들면서 내린 �
 |---|---|---|---|
 | [개발 요구사항](spec/requirements.md) | F-01\~F-64, A-01\~A-09, 5장 판정 기준, 13장 개발 단계. 14장에 뼈대를 만들며 내린 결정과 macOS API 대조 검토 의견(결정 대기) | [en](spec/requirements.en.md) | 2026-09-17 |
 
+## research
+
+실기기에서 재 보고 알아낸 것.
+
+| 문서 | 요약 | EN | 갱신 |
+|---|---|---|---|
+| [0단계 프로브 결과](research/probe-results.md) | SMC·IOHID 온도와 팬, IOReport CPU 주파수는 일반 권한으로 읽힌다. 다른 계정 소유 프로세스의 사용량은 예외 없이 막힌다 | [en](research/probe-results.en.md) | 2026-09-20 |
+
 ---
 
 원자료는 [kb/raw/](../raw/README.md)에 있다. 문서 사이의 관계는 [graph.json](graph.json)이,
