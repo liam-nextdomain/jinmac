@@ -185,6 +185,60 @@ final class StoreTests: XCTestCase {
         XCTAssertNil(report?.textJSON, "문장 생성 전이면 비어 있다")
     }
 
+    /// 재실행하면 수집 루프가 가장 최근에 시작한 검진을 이어받는다.
+    func testLatestCheckupIsTheMostRecentlyStarted() async throws {
+        let store = try openStore()
+        var latest = try await store.latestCheckup()
+        XCTAssertNil(latest)
+
+        try await store.insertCheckup(startedAt: 1_758_300_000, targetDays: 7)
+        let newer = try await store.insertCheckup(startedAt: 1_759_000_000, targetDays: 14)
+        latest = try await store.latestCheckup()
+        XCTAssertEqual(latest?.id, newer)
+    }
+
+    /// 검진 초기화(F-63). `sample`에는 검진 번호가 없어 기간으로 소속을 가른다.
+    ///
+    /// 끝난 검진은 시작부터 끝까지, 진행 중인 검진은 시작 이후 전부를 지운다. 다른 검진의 샘플과
+    /// 리포트는 남고, 지운 검진의 리포트는 외래 키로 함께 지워진다.
+    func testDeletingACheckupRemovesItsSamplesAndReports() async throws {
+        let store = try openStore()
+        let finished = try await store.insertCheckup(startedAt: 1_000, targetDays: 7)
+        try await store.updateCheckup(id: finished, status: .completed, endedAt: 2_000)
+        let running = try await store.insertCheckup(startedAt: 3_000, targetDays: 14)
+        try await store.insert([999, 1_000, 2_000, 2_001, 3_000, 9_000].map { Sample(timestamp: $0) })
+        let finishedReport = try await store.insertReport(
+            checkupID: finished, createdAt: 2_000, verdictJSON: "{}", textJSON: nil, schemaVersion: 1)
+        let runningReport = try await store.insertReport(
+            checkupID: running, createdAt: 3_500, verdictJSON: "{}", textJSON: nil, schemaVersion: 1)
+
+        try await store.deleteCheckup(id: running)
+        var left = try await store.samples(from: 0, to: .max, limit: 10)
+        XCTAssertEqual(left.map(\.timestamp), [999, 1_000, 2_000, 2_001])
+        let removedReport = try await store.report(id: runningReport)
+        XCTAssertNil(removedReport)
+        var otherReport = try await store.report(id: finishedReport)
+        XCTAssertNotNil(otherReport, "다른 검진의 리포트는 남는다")
+
+        try await store.deleteCheckup(id: finished)
+        left = try await store.samples(from: 0, to: .max, limit: 10)
+        XCTAssertEqual(left.map(\.timestamp), [999, 2_001])
+        let checkups = try await store.checkups()
+        XCTAssertEqual(checkups, [])
+        otherReport = try await store.report(id: finishedReport)
+        XCTAssertNil(otherReport)
+    }
+
+    /// 없는 검진을 지우면 아무것도 지우지 않는다. 시작 시각이 NULL이 되어 모든 샘플을 지우면 안 된다.
+    func testDeletingAnUnknownCheckupDeletesNothing() async throws {
+        let store = try openStore()
+        try await store.insert([Sample(timestamp: 1_000)])
+
+        try await store.deleteCheckup(id: 404)
+        let count = try await store.sampleCount()
+        XCTAssertEqual(count, 1)
+    }
+
     /// 없는 검진에 리포트를 붙일 수 없다. 외래 키가 꺼져 있으면 이 테스트가 통과해 버린다.
     func testRejectsReportForUnknownCheckup() async throws {
         let store = try openStore()
