@@ -332,6 +332,48 @@ public actor SampleStore {
         return Self.readCheckup(from: statement)
     }
 
+    /// 가장 최근에 시작한 검진. 앱을 다시 띄우면 수집 루프가 이 검진을 이어받는다.
+    public func latestCheckup() throws -> Checkup? {
+        let statement = try SQLiteStatement(
+            db: db,
+            sql: """
+                SELECT id, started_at, ended_at, target_days, status FROM checkup
+                ORDER BY started_at DESC, id DESC
+                LIMIT 1
+                """)
+        guard try statement.step() else { return nil }
+        return Self.readCheckup(from: statement)
+    }
+
+    /// 검진 한 건과 그 기간의 샘플을 트랜잭션 하나로 지운다. 검진 초기화(F-63)가 쓴다.
+    ///
+    /// `sample`에는 검진 번호가 없어서 기간으로 소속을 가른다. 끝난 검진은 시작부터 끝까지(양 끝
+    /// 포함), 진행 중인 검진은 시작 이후 전부다. 검진이 없으면 시작 시각이 NULL이 되어 비교가
+    /// 전부 거짓이므로 샘플을 하나도 지우지 않는다. 리포트는 외래 키가 함께 지운다.
+    public func deleteCheckup(id: Int64) throws {
+        let samples = try SQLiteStatement(
+            db: db,
+            sql: """
+                DELETE FROM sample
+                WHERE ts >= (SELECT started_at FROM checkup WHERE id = ?1)
+                  AND ts <= COALESCE((SELECT ended_at FROM checkup WHERE id = ?1), ?2)
+                """)
+        samples.bind(1, id)
+        samples.bind(2, Int64.max)
+        let checkup = try SQLiteStatement(db: db, sql: "DELETE FROM checkup WHERE id = ?")
+        checkup.bind(1, id)
+
+        try Self.execute(db, "BEGIN")
+        do {
+            try samples.run()
+            try checkup.run()
+            try Self.execute(db, "COMMIT")
+        } catch {
+            try? Self.execute(db, "ROLLBACK")
+            throw error
+        }
+    }
+
     /// 시작이 늦은 것부터. 과거 리포트 목록이 이 순서를 쓴다 (F-44).
     public func checkups() throws -> [Checkup] {
         let statement = try SQLiteStatement(
