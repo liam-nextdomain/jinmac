@@ -61,6 +61,8 @@ targets:
       - package: CoreKit
         product: Store
       - package: CoreKit
+        product: Recorder
+      - package: CoreKit
         product: Workload
       - package: CoreKit
         product: Verdict
