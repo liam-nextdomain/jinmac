@@ -5,7 +5,8 @@ import PackageDescription
 //
 //   Model ← Collector            수집: IOKit·sysctl·비공개 API. 판정 쪽으로 새지 않는다
 //   Model ← Store                저장: 시스템 SQLite3 직접
-//   Model ← Workload ← Verdict   판정: 결정론. Collector·Store를 import하지 않는다
+//   Collector, Store ← Recorder  수집 루프: 주기 실행, 배치 버퍼, 검진 상태 (F-01, F-63)
+//   Model ← Workload ← Verdict   판정: 결정론. Collector·Store·Recorder를 import하지 않는다
 //   Verdict ← Report ← Narrator  문장: Narrator는 판정 결과만 받는다 (A-02)
 let package = Package(
     name: "CoreKit",
@@ -14,6 +15,7 @@ let package = Package(
         .library(name: "Model", targets: ["Model"]),
         .library(name: "Collector", targets: ["Collector"]),
         .library(name: "Store", targets: ["Store"]),
+        .library(name: "Recorder", targets: ["Recorder"]),
         .library(name: "Workload", targets: ["Workload"]),
         .library(name: "Verdict", targets: ["Verdict"]),
         .library(name: "Report", targets: ["Report"]),
@@ -27,13 +29,16 @@ let package = Package(
             dependencies: ["Model"],
             linkerSettings: [.linkedLibrary("sqlite3")]
         ),
+        .target(name: "Recorder", dependencies: ["Model", "Collector", "Store"]),
         .target(name: "Workload", dependencies: ["Model"], resources: [.process("Resources")]),
         .target(name: "Verdict", dependencies: ["Model", "Workload"], resources: [.process("Resources")]),
         .target(name: "Report", dependencies: ["Model", "Verdict"]),
         .target(name: "Narrator", dependencies: ["Report"]),
         .testTarget(
             name: "CoreKitTests",
-            dependencies: ["Model", "Collector", "Store", "Workload", "Verdict", "Report", "Narrator"]
+            dependencies: [
+                "Model", "Collector", "Store", "Recorder", "Workload", "Verdict", "Report", "Narrator",
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]

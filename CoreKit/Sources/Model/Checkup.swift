@@ -2,8 +2,8 @@ import Foundation
 
 /// 검진 1회. 요구사항 7장 `checkup` 테이블의 한 행이다.
 ///
-/// 시작·일시정지·재개·초기화의 전이 규칙(F-63)은 수집 루프가 가진다. 여기서는 저장되는 값의
-/// 모양만 정한다.
+/// 시작·일시정지·재개·초기화의 전이 규칙(F-63)은 수집 루프(`Recorder` 모듈의 `CheckupRecorder`)가
+/// 가진다. 여기서는 저장되는 값의 모양만 정한다.
 public struct Checkup: Sendable, Hashable, Codable {
     public var id: Int64
     /// Unix 시각(초)
@@ -27,6 +27,21 @@ public struct Checkup: Sendable, Hashable, Codable {
         self.targetDays = targetDays
         self.status = status
     }
+
+    /// 사용자가 고를 수 있는 검진 기간 (F-01)
+    public static let targetDayChoices = [7, 14, 30]
+
+    /// 요구사항 14.1에서 원안대로 14일로 정했다
+    public static let defaultTargetDays = 14
+
+    /// 검진이 끝나는 시각. 시작 시각에 목표 일수를 더한 벽시계 시각이다.
+    ///
+    /// 일시정지한 구간도 기간에 들어간다. 정지 시간을 빼서 늘리려면 `checkup` 테이블에 그 값을 담을
+    /// 열이 있어야 하는데, 7장에는 없다. 정지로 모자란 데이터는 활성 시간 10시간 기준이 판정
+    /// 보류로 걸러 낸다 (F-34).
+    public var scheduledEndAt: Int64 {
+        startedAt + Int64(targetDays) * 86_400
+    }
 }
 
 /// 검진 진행 상태 (F-63). 초기화는 행을 지우므로 상태가 따로 없다.
@@ -39,6 +54,11 @@ public enum CheckupStatus: String, Sendable, Hashable, Codable, CaseIterable {
     case paused
     /// 목표 기간을 채우고 끝났다
     case completed
+
+    /// 일시정지도 진행 중이다. 새 검진을 시작하려면 초기화하거나 기간이 끝나야 한다.
+    public var isInProgress: Bool {
+        self != .completed
+    }
 }
 
 /// 저장된 리포트 한 행. 요구사항 7장 `report` 테이블이다.

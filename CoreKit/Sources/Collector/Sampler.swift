@@ -7,7 +7,10 @@ import Model
 /// `nil`만 돌려줄 수 있다는 전제로 짠다.
 ///
 /// 수집기 전체 예산은 CPU 평균 1% 미만, 상주 메모리 50MB 미만이다 (F-10).
-public protocol Sampler: Sendable {
+///
+/// `Reading`을 기본 연관 타입으로 둔다. 수집 루프가 `any Sampler<MemoryReading>`로 받아야
+/// 테스트가 실기기 대신 더블을 넣을 수 있다.
+public protocol Sampler<Reading>: Sendable {
     associatedtype Reading: Sendable
 
     func read() -> Reading?
