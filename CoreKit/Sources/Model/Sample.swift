@@ -13,10 +13,11 @@ public struct Sample: Sendable, Hashable, Codable {
     public var memoryUsedBytes: UInt64?
     public var memoryCompressedBytes: UInt64?
     public var swapUsedBytes: UInt64?
-    /// 누적값. 구간 증가량으로 읽는다
-    public var swapIns: UInt64?
-    /// 누적값. 구간 증가량으로 읽는다
-    public var swapOuts: UInt64?
+    /// 부팅 이후 누적. 구간 증가량으로 읽는다. 페이지 수가 아니라 바이트다 (요구사항 14.3a)
+    public var swapInBytes: UInt64?
+    /// 부팅 이후 누적. 구간 증가량을 실제 경과 시간으로 나눈 비율이 메모리 신호다 (요구사항 14.3a).
+    /// 페이지 크기가 기기마다 달라(16KB/4KB) 페이지 수로 저장하면 판정 쪽에서 환산할 수 없다
+    public var swapOutBytes: UInt64?
     public var memoryPressure: MemoryPressure?
 
     // MARK: CPU (F-03)

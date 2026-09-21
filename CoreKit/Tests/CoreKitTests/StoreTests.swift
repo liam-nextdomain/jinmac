@@ -93,11 +93,11 @@ final class StoreTests: XCTestCase {
     func testStoresByteCountsBeyondInt64Max() async throws {
         let store = try openStore()
         var sample = Sample(timestamp: 1_758_300_010)
-        sample.swapOuts = UInt64.max
+        sample.swapOutBytes = UInt64.max
         try await store.insert([sample])
 
         let read = try await store.samples(from: 0, to: .max, limit: 1)
-        XCTAssertEqual(read.first?.swapOuts, UInt64.max)
+        XCTAssertEqual(read.first?.swapOutBytes, UInt64.max)
     }
 
     func testInsertsBatchInOneTransaction() async throws {
@@ -204,8 +204,8 @@ final class StoreTests: XCTestCase {
         sample.memoryUsedBytes = 21_474_836_480
         sample.memoryCompressedBytes = 3_221_225_472
         sample.swapUsedBytes = 1_073_741_824
-        sample.swapIns = 12_345
-        sample.swapOuts = 67_890
+        sample.swapInBytes = 12_345
+        sample.swapOutBytes = 67_890
         sample.memoryPressure = .warning
         sample.cpuTotal = 0.41
         sample.cpuPerformance = 0.62
