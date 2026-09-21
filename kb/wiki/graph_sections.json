@@ -6,7 +6,7 @@
   "stats": {
     "sections": 68,
     "symbols": 43,
-    "edges": 338
+    "edges": 376
   },
   "sections": [
     {
@@ -663,14 +663,16 @@
       "num": "14.1",
       "heading": "Decisions",
       "line_start": 438,
-      "line_end": 464,
+      "line_end": 466,
       "symbols_declared": [],
       "symbols_mentioned": [
+        "F-08",
         "F-32",
         "F-30",
         "F-34",
         "F-01",
         "F-11",
+        "F-63",
         "F-20",
         "F-21",
         "F-40",
@@ -683,7 +685,6 @@
         "F-05",
         "F-06",
         "F-07",
-        "F-08",
         "F-09",
         "F-10",
         "F-31",
@@ -702,8 +703,8 @@
       "level": 3,
       "num": "14.2",
       "heading": "Review notes: collection",
-      "line_start": 465,
-      "line_end": 468,
+      "line_start": 467,
+      "line_end": 470,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -714,8 +715,8 @@
       "level": 3,
       "num": "14.2a",
       "heading": "F-02: read the memory pressure level on every sample",
-      "line_start": 469,
-      "line_end": 480,
+      "line_start": 471,
+      "line_end": 482,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-02"
@@ -728,8 +729,8 @@
       "level": 3,
       "num": "14.2b",
       "heading": "F-05: macOS has no I/O wait metric",
-      "line_start": 481,
-      "line_end": 494,
+      "line_start": 483,
+      "line_end": 496,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-05"
@@ -742,8 +743,8 @@
       "level": 3,
       "num": "14.2c",
       "heading": "F-06: throttling cannot be judged from frequency and temperature alone",
-      "line_start": 495,
-      "line_end": 508,
+      "line_start": 497,
+      "line_end": 510,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-06"
@@ -756,8 +757,8 @@
       "level": 3,
       "num": "14.2d",
       "heading": "F-09, F-23: usage of processes owned by other accounts may be unreadable with ordinary privileges",
-      "line_start": 509,
-      "line_end": 524,
+      "line_start": 511,
+      "line_end": 526,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-09",
@@ -772,8 +773,8 @@
       "level": 3,
       "num": "14.2e",
       "heading": "F-04: find GPU statistics through the parent class IOAccelerator",
-      "line_start": 525,
-      "line_end": 534,
+      "line_start": 527,
+      "line_end": 536,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-04"
@@ -786,8 +787,8 @@
       "level": 3,
       "num": "14.2f",
       "heading": "F-23: do not drop work left running while away from the machine",
-      "line_start": 535,
-      "line_end": 546,
+      "line_start": 537,
+      "line_end": 548,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-23"
@@ -800,8 +801,8 @@
       "level": 3,
       "num": "14.3",
       "heading": "Review notes: verdict criteria",
-      "line_start": 547,
-      "line_end": 550,
+      "line_start": 549,
+      "line_end": 552,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -812,8 +813,8 @@
       "level": 3,
       "num": "14.3a",
       "heading": "§5 memory signal: look at swap growth instead of swap used",
-      "line_start": 551,
-      "line_end": 560,
+      "line_start": 553,
+      "line_end": 562,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -824,8 +825,8 @@
       "level": 3,
       "num": "14.3b",
       "heading": "§5 auxiliary rule: do not judge intended full load from the frontmost app alone",
-      "line_start": 561,
-      "line_end": 573,
+      "line_start": 563,
+      "line_end": 575,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-08",
@@ -840,8 +841,8 @@
       "level": 3,
       "num": "14.3c",
       "heading": "§5 thermal row: normalize the counts by active time",
-      "line_start": 574,
-      "line_end": 582,
+      "line_start": 576,
+      "line_end": 584,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-01"
@@ -854,8 +855,8 @@
       "level": 3,
       "num": "14.3d",
       "heading": "§13: there are no verifiable acceptance criteria",
-      "line_start": 583,
-      "line_end": 595,
+      "line_start": 585,
+      "line_end": 597,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -866,8 +867,8 @@
       "level": 3,
       "num": "14.4",
       "heading": "Review notes: on-device AI",
-      "line_start": 596,
-      "line_end": 599,
+      "line_start": 598,
+      "line_end": 601,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -878,8 +879,8 @@
       "level": 3,
       "num": "14.4a",
       "heading": "A-04: the app inserts the numbers, not the model",
-      "line_start": 600,
-      "line_end": 612,
+      "line_start": 602,
+      "line_end": 614,
       "symbols_declared": [],
       "symbols_mentioned": [
         "A-04"
@@ -892,8 +893,8 @@
       "level": 3,
       "num": "14.4b",
       "heading": "F-41, A-06, A-07: decide whether to reveal the fallback to the user",
-      "line_start": 613,
-      "line_end": 625,
+      "line_start": 615,
+      "line_end": 627,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-41",
@@ -908,8 +909,8 @@
       "level": 3,
       "num": "14.4c",
       "heading": "A-01: check Korean support separately",
-      "line_start": 626,
-      "line_end": 635,
+      "line_start": 628,
+      "line_end": 637,
       "symbols_declared": [],
       "symbols_mentioned": [
         "A-01",
@@ -923,8 +924,8 @@
       "level": 3,
       "num": "14.5",
       "heading": "Review notes: distribution and non-functional",
-      "line_start": 636,
-      "line_end": 639,
+      "line_start": 638,
+      "line_end": 641,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -935,8 +936,8 @@
       "level": 3,
       "num": "14.5a",
       "heading": "F-11: with ad-hoc signing the login item can come undone after an update",
-      "line_start": 640,
-      "line_end": 653,
+      "line_start": 642,
+      "line_end": 655,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-11"
@@ -949,8 +950,8 @@
       "level": 3,
       "num": "14.5b",
       "heading": "§8: recording `top_process` easily pushes disk writes past 5MB a day",
-      "line_start": 654,
-      "line_end": 664,
+      "line_start": 656,
+      "line_end": 666,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -961,8 +962,8 @@
       "level": 3,
       "num": "14.5c",
       "heading": "F-10, F-22: decide whether 1-second sessions count against the resource budget",
-      "line_start": 665,
-      "line_end": 674,
+      "line_start": 667,
+      "line_end": 676,
       "symbols_declared": [],
       "symbols_mentioned": [
         "F-10",
@@ -976,8 +977,8 @@
       "level": 3,
       "num": "14.5d",
       "heading": "§10.2: state the Actions free-tier condition and SDK version",
-      "line_start": 675,
-      "line_end": 682,
+      "line_start": 677,
+      "line_end": 684,
       "symbols_declared": [],
       "symbols_mentioned": []
     },
@@ -988,8 +989,8 @@
       "level": 3,
       "num": "14.5e",
       "heading": "§13: pair development stages with version numbers",
-      "line_start": 683,
-      "line_end": 690,
+      "line_start": 685,
+      "line_end": 692,
       "symbols_declared": [],
       "symbols_mentioned": []
     }
@@ -1036,7 +1037,7 @@
       "cited_by": [
         {
           "path": "CoreKit/Sources/Model/Checkup.swift",
-          "line": 52
+          "line": 72
         }
       ]
     },
@@ -1151,6 +1152,58 @@
         {
           "path": "CoreKit/Sources/Model/Checkup.swift",
           "line": 13
+        },
+        {
+          "path": "CoreKit/Sources/Model/Checkup.swift",
+          "line": 31
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 6
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 18
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 21
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 95
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 329
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 331
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/ModelTests.swift",
+          "line": 26
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 8
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 41
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 70
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 333
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 428
         }
       ]
     },
@@ -1165,6 +1218,14 @@
         "requirements#14.2a"
       ],
       "cited_by": [
+        {
+          "path": "CoreKit/Sources/Collector/MemorySampler.swift",
+          "line": 4
+        },
+        {
+          "path": "CoreKit/Sources/Collector/MemorySampler.swift",
+          "line": 51
+        },
         {
           "path": "CoreKit/Sources/Collector/Sampler.swift",
           "line": 3
@@ -1190,12 +1251,36 @@
       ],
       "cited_by": [
         {
+          "path": "CoreKit/Sources/Collector/CPUSampler.swift",
+          "line": 19
+        },
+        {
+          "path": "CoreKit/Sources/Collector/CPUSampler.swift",
+          "line": 26
+        },
+        {
+          "path": "CoreKit/Sources/Collector/CPUSampler.swift",
+          "line": 82
+        },
+        {
+          "path": "CoreKit/Sources/Collector/CoreTopology.swift",
+          "line": 5
+        },
+        {
           "path": "CoreKit/Sources/Collector/Sampler.swift",
           "line": 3
         },
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
-          "line": 22
+          "line": 23
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/CollectorTests.swift",
+          "line": 101
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/CollectorTests.swift",
+          "line": 182
         },
         {
           "path": "scripts/probes/probe-ioreport.swift",
@@ -1223,7 +1308,7 @@
         },
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
-          "line": 32
+          "line": 33
         }
       ]
     },
@@ -1243,7 +1328,7 @@
         },
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
-          "line": 38
+          "line": 39
         }
       ]
     },
@@ -1267,7 +1352,7 @@
         },
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
-          "line": 47
+          "line": 48
         },
         {
           "path": "scripts/probes/probe-smc.swift",
@@ -1290,7 +1375,7 @@
         },
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
-          "line": 54
+          "line": 55
         }
       ]
     },
@@ -1311,7 +1396,7 @@
         },
         {
           "path": "CoreKit/Sources/Model/Sample.swift",
-          "line": 54
+          "line": 55
         }
       ]
     },
@@ -1346,8 +1431,32 @@
       ],
       "cited_by": [
         {
+          "path": "CoreKit/Sources/Collector/CPUSampler.swift",
+          "line": 92
+        },
+        {
+          "path": "CoreKit/Sources/Collector/CPUSampler.swift",
+          "line": 143
+        },
+        {
+          "path": "CoreKit/Sources/Collector/MemorySampler.swift",
+          "line": 67
+        },
+        {
           "path": "CoreKit/Sources/Collector/Sampler.swift",
           "line": 9
+        },
+        {
+          "path": "CoreKit/Sources/Collector/Sysctl.swift",
+          "line": 5
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 34
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 69
         }
       ]
     },
@@ -1442,6 +1551,10 @@
       ],
       "cited_by": [
         {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 159
+        },
+        {
           "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
           "line": 3
         },
@@ -1512,6 +1625,10 @@
       ],
       "cited_by": [
         {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 15
+        },
+        {
           "path": "CoreKit/Sources/Verdict/RuleEngine.swift",
           "line": 3
         },
@@ -1538,6 +1655,10 @@
         "requirements#14.1"
       ],
       "cited_by": [
+        {
+          "path": "CoreKit/Sources/Model/Checkup.swift",
+          "line": 41
+        },
         {
           "path": "CoreKit/Sources/Model/Grade.swift",
           "line": 36
@@ -1622,7 +1743,7 @@
       "cited_by": [
         {
           "path": "CoreKit/Sources/Store/SampleStore.swift",
-          "line": 335
+          "line": 377
         }
       ]
     },
@@ -1664,7 +1785,7 @@
       "cited_by": [
         {
           "path": "CoreKit/Sources/Model/Checkup.swift",
-          "line": 56
+          "line": 76
         },
         {
           "path": "CoreKit/Sources/Model/Grade.swift",
@@ -1746,7 +1867,9 @@
       "kind": "F",
       "proposed": false,
       "declared_in": "requirements#4.6",
-      "mentioned_in": [],
+      "mentioned_in": [
+        "requirements#14.1"
+      ],
       "cited_by": [
         {
           "path": "App/Views/MenuContentView.swift",
@@ -1758,11 +1881,39 @@
         },
         {
           "path": "CoreKit/Sources/Model/Checkup.swift",
-          "line": 32
+          "line": 47
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 6
+        },
+        {
+          "path": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+          "line": 166
         },
         {
           "path": "CoreKit/Sources/Store/SampleStore.swift",
           "line": 303
+        },
+        {
+          "path": "CoreKit/Sources/Store/SampleStore.swift",
+          "line": 348
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 8
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 196
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+          "line": 260
+        },
+        {
+          "path": "CoreKit/Tests/CoreKitTests/StoreTests.swift",
+          "line": 200
         }
       ]
     },
@@ -2575,6 +2726,11 @@
     },
     {
       "from": "requirements#14.1",
+      "to": "F-08",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
       "to": "F-32",
       "relation": "mentions"
     },
@@ -2596,6 +2752,11 @@
     {
       "from": "requirements#14.1",
       "to": "F-11",
+      "relation": "mentions"
+    },
+    {
+      "from": "requirements#14.1",
+      "to": "F-63",
       "relation": "mentions"
     },
     {
@@ -2656,11 +2817,6 @@
     {
       "from": "requirements#14.1",
       "to": "F-07",
-      "relation": "mentions"
-    },
-    {
-      "from": "requirements#14.1",
-      "to": "F-08",
       "relation": "mentions"
     },
     {
@@ -3174,6 +3330,81 @@
       "relation": "cites"
     },
     {
+      "from": "CoreKit/Sources/Model/Checkup.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/ModelTests.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-01",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/MemorySampler.swift",
+      "to": "F-02",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/MemorySampler.swift",
+      "to": "F-02",
+      "relation": "cites"
+    },
+    {
       "from": "CoreKit/Sources/Collector/Sampler.swift",
       "to": "F-02",
       "relation": "cites"
@@ -3181,6 +3412,26 @@
     {
       "from": "CoreKit/Sources/Model/Sample.swift",
       "to": "F-02",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/CPUSampler.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/CPUSampler.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/CPUSampler.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/CoreTopology.swift",
+      "to": "F-03",
       "relation": "cites"
     },
     {
@@ -3190,6 +3441,16 @@
     },
     {
       "from": "CoreKit/Sources/Model/Sample.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/CollectorTests.swift",
+      "to": "F-03",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/CollectorTests.swift",
       "to": "F-03",
       "relation": "cites"
     },
@@ -3264,7 +3525,37 @@
       "relation": "cites"
     },
     {
+      "from": "CoreKit/Sources/Collector/CPUSampler.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/CPUSampler.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/MemorySampler.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
       "from": "CoreKit/Sources/Collector/Sampler.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Collector/Sysctl.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-10",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
       "to": "F-10",
       "relation": "cites"
     },
@@ -3286,6 +3577,11 @@
     {
       "from": "scripts/probes/probe-rusage.swift",
       "to": "F-23",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-30",
       "relation": "cites"
     },
     {
@@ -3334,6 +3630,11 @@
       "relation": "cites"
     },
     {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-33",
+      "relation": "cites"
+    },
+    {
       "from": "CoreKit/Sources/Verdict/RuleEngine.swift",
       "to": "F-33",
       "relation": "cites"
@@ -3351,6 +3652,11 @@
     {
       "from": "CoreKit/Tests/CoreKitTests/VerdictTests.swift",
       "to": "F-33",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Model/Checkup.swift",
+      "to": "F-34",
       "relation": "cites"
     },
     {
@@ -3464,7 +3770,42 @@
       "relation": "cites"
     },
     {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Recorder/CheckupRecorder.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
       "from": "CoreKit/Sources/Store/SampleStore.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Sources/Store/SampleStore.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/RecorderTests.swift",
+      "to": "F-63",
+      "relation": "cites"
+    },
+    {
+      "from": "CoreKit/Tests/CoreKitTests/StoreTests.swift",
       "to": "F-63",
       "relation": "cites"
     }
