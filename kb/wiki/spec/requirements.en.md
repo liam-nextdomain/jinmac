@@ -2,8 +2,8 @@
 id: requirements
 title: "JinMac, a workload checkup app for the Mac: development requirements"
 type: requirements
-version: "1.2"
-date: "2026-09-20"
+version: "1.3"
+date: "2026-09-22"
 lang: en
 parents: []
 entities:
@@ -442,7 +442,8 @@ privileges on Apple M5, macOS 27.2 and Xcode 27.0.
 | App name | JinMac. Bundle ID `dev.liampark.jinmac` | Settles the app name among the open questions in §12. The report card design is still open |
 | Data path | `~/Library/Application Support/JinMac/jinmac.sqlite` | Fills in the `<앱이름>` placeholder in §7 |
 | SQLite access | Use the system SQLite3 directly instead of GRDB | Changes the storage row of §9. With 7 tables and mostly batch inserts and aggregate queries, a thin wrapper is enough. This brings third-party dependencies to zero. Sparkle, the only candidate, is deferred under the Automatic updates row below |
-| Code structure | XcodeGen `project.yml` and a local SwiftPM package `CoreKit`. Seven modules inside the package, with the dependency direction enforcing design constraints | Supplements §9. The module layout is in the table below |
+| Code structure | XcodeGen `project.yml` and a local SwiftPM package `CoreKit`. Eight modules inside the package, with the dependency direction enforcing design constraints | Supplements §9. The module layout is in the table below |
+| Collection loop location (2026-09-22) | Periodic execution, batch buffering and checkup state transitions live in a new CoreKit module `Recorder`, not in the app. The app keeps only the context reads that need AppKit (F-08) | Supplements §9. This lets the state transitions and buffering be verified with `swift test` without launching the app. The module count goes from seven to eight |
 | Initial grade caps | `rules.json` has a per-resource `max_grade`: only memory is `limit`, the rest are `watch` | The mitigation wording in §12 appears neither in the §5 table nor in F-32, so it moves into the rule file |
 | Minimum OS and AI | Deployment target is macOS 14, and Foundation Models is weak-linked | Follows the compatibility row of §8. Confirmed in an actual build that it links as `LC_LOAD_WEAK_DYLIB` |
 | Repository | Public GitHub repository | Using the Actions macOS runner of §10.2 at no extra cost requires a public repository |
@@ -457,8 +458,9 @@ Modules and dependency direction:
 | `Model` | nothing | Shared value types | An unread metric is `nil`, never 0 |
 | `Collector` | Model | F-01\~F-11 | IOKit and private APIs are used here only |
 | `Store` | Model | §7 | System SQLite3 only |
+| `Recorder` | Model, Collector, Store | F-01, F-63 | Takes time as an argument, and no verdict-side module imports it |
 | `Workload` | Model | F-20, F-21 | The mapping is bundled JSON |
-| `Verdict` | Model, Workload | F-30\~F-34, §5 | No clock, no randomness, no unordered iteration, and no import of Collector or Store |
+| `Verdict` | Model, Workload | F-30\~F-34, §5 | No clock, no randomness, no unordered iteration, and no import of Collector, Store or Recorder |
 | `Report` | Model, Verdict | The non-UI parts of F-40\~F-44, F-50\~F-53 | Encodes with sorted keys, so the same report is the same bytes |
 | `Narrator` | Report | §6 | The only place that imports Foundation Models, and it takes only the verdict as input |
 

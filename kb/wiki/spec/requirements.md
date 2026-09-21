@@ -2,8 +2,8 @@
 id: requirements
 title: "JinMac 맥 작업 부하 검진 앱: 개발 요구사항"
 type: requirements
-version: "1.2"
-date: "2026-09-20"
+version: "1.3"
+date: "2026-09-22"
 parents: []
 entities:
   - name: collector
@@ -391,7 +391,8 @@ Apple M5, macOS 27.2, Xcode 27.0 환경에서 일반 사용자 권한으로 확�
 | 앱 이름 | JinMac. 번들 ID는 `dev.liampark.jinmac` | 12장 미결 사항 중 앱 이름을 정한다. 리포트 카드 디자인은 아직 미결이다 |
 | 데이터 경로 | `~/Library/Application Support/JinMac/jinmac.sqlite` | 7장의 `<앱이름>` 자리를 채운다 |
 | SQLite 접근 | GRDB 대신 시스템 SQLite3를 직접 쓴다 | 9장 저장 항목을 바꾼다. 테이블 7개에 배치 삽입과 집계 쿼리가 대부분이라 얇은 래퍼로 충분하다. 이로써 서드파티 의존성은 0개다. 유일한 후보였던 Sparkle은 아래 자동 업데이트 항목에서 보류했다 |
-| 코드 구조 | XcodeGen `project.yml`과 로컬 SwiftPM 패키지 `CoreKit`. 패키지 안에 모듈 7개를 두고, 의존 방향으로 설계 제약을 강제한다 | 9장을 보강한다. 모듈 구성은 아래 표에 있다 |
+| 코드 구조 | XcodeGen `project.yml`과 로컬 SwiftPM 패키지 `CoreKit`. 패키지 안에 모듈 8개를 두고, 의존 방향으로 설계 제약을 강제한다 | 9장을 보강한다. 모듈 구성은 아래 표에 있다 |
+| 수집 루프 위치 (2026-09-22) | 주기 실행, 배치 버퍼링, 검진 상태 전이를 앱이 아니라 CoreKit의 새 모듈 `Recorder`에 둔다. 앱에는 AppKit이 필요한 컨텍스트 읽기(F-08)만 남긴다 | 9장을 보강한다. 상태 전이와 버퍼링을 앱을 띄우지 않고 `swift test`로 검증하기 위해서다. 모듈이 7개에서 8개가 된다 |
 | 초기 등급 상한 | `rules.json`에 자원별 `max_grade`를 두고, 메모리만 `limit`이고 나머지는 `watch`다 | 12장 리스크 완화 문구가 5장 표와 F-32 어디에도 반영되어 있지 않아 규칙 파일로 옮긴다 |
 | 최소 OS와 AI | 배포 대상은 macOS 14이고 Foundation Models는 약한 링크로 연결한다 | 8장 호환성 항목을 따른다. 실제 빌드에서 `LC_LOAD_WEAK_DYLIB`로 연결되는 것을 확인했다 |
 | 저장소 | GitHub 공개 저장소 | 10.2절의 Actions macOS 러너를 추가 비용 없이 쓰려면 공개 저장소여야 한다 |
@@ -406,8 +407,9 @@ Apple M5, macOS 27.2, Xcode 27.0 환경에서 일반 사용자 권한으로 확�
 | `Model` | 없음 | 공용 값 타입 | 읽지 못한 지표는 0이 아니라 `nil`로 둔다 |
 | `Collector` | Model | F-01\~F-11 | IOKit과 비공개 API는 여기서만 쓴다 |
 | `Store` | Model | 7장 | 시스템 SQLite3만 쓴다 |
+| `Recorder` | Model, Collector, Store | F-01, F-63 | 시각을 인자로 받고, 판정 쪽 모듈은 이 모듈을 import하지 않는다 |
 | `Workload` | Model | F-20, F-21 | 매핑은 번들 JSON이다 |
-| `Verdict` | Model, Workload | F-30\~F-34, 5장 | 시각·난수·순서 없는 순회를 쓰지 않고, Collector와 Store를 import하지 않는다 |
+| `Verdict` | Model, Workload | F-30\~F-34, 5장 | 시각·난수·순서 없는 순회를 쓰지 않고, Collector·Store·Recorder를 import하지 않는다 |
 | `Report` | Model, Verdict | F-40\~F-44, F-50\~F-53 중 UI가 아닌 부분 | 키를 정렬해 인코딩하므로 같은 리포트는 같은 바이트가 된다 |
 | `Narrator` | Report | 6장 | Foundation Models를 import하는 곳은 여기뿐이고, 판정 결과만 입력으로 받는다 |
 

@@ -19,7 +19,7 @@ open JinMac.xcodeproj          # Xcode에서 열기 (build.sh가 먼저 만들�
 
 ```
 App/       메뉴바 UI, 메인 창                SwiftUI + 필요한 곳만 AppKit
-CoreKit/   로직 패키지 (모듈 7개)            UI 의존 없음. 앱 없이 swift test로 검증
+CoreKit/   로직 패키지 (모듈 8개)            UI 의존 없음. 앱 없이 swift test로 검증
 scripts/   빌드·테스트·릴리스·지식 베이스 도구
 kb/wiki/   요구사항, 결정, 검토 의견         지식 그래프가 관계를 잇는다
 kb/raw/    외부 원자료 (요구사항 원문 등)    쓴 뒤 고치지 않는다
@@ -33,7 +33,8 @@ docs/      개발 문서(이 파일)
 ```
 Model ← Collector            수집: IOKit·sysctl·비공개 API는 여기서만
 Model ← Store                저장: 시스템 SQLite3
-Model ← Workload ← Verdict   판정: 결정론. Collector·Store를 모른다
+Collector, Store ← Recorder  수집 루프: 주기 실행, 배치 버퍼, 검진 상태
+Model ← Workload ← Verdict   판정: 결정론. Collector·Store·Recorder를 모른다
 Verdict ← Report ← Narrator  문장: Narrator는 판정 결과만 받는다
 ```
 
@@ -41,7 +42,8 @@ Verdict ← Report ← Narrator  문장: Narrator는 판정 결과만 받는다
 |---|---|---|
 | `Model` | 공용 | `Sample`(읽지 못한 값은 `nil`), `ResourceKind`, `Grade`, `Judgement` |
 | `Collector` | F-01\~F-11 | `Sampler` 프로토콜, `MemorySampler`, `CPUSampler`(`CoreTopology`로 P·E 구분) |
-| `Store` | 7장 | `SampleStore`: WAL 모드로 열기, `user_version` |
+| `Store` | 7장 | `SampleStore`: WAL 모드로 열기, `user_version`, 배치 삽입, 기간 조회, 검진 삭제 |
+| `Recorder` | F-01, F-63 | `CheckupRecorder`: 주기 실행(1\~30초), 10분 단위 배치 저장, 검진 시작·일시정지·재개·초기화·종료 |
 | `Workload` | F-20, F-21 | `WorkloadCategory` 10종, 빈 `app-categories.json` |
 | `Verdict` | F-30\~F-34, 5장 | `rules.json`(5장 초기값), 경계값 판정과 보류 |
 | `Report` | F-40\~F-44, F-50\~F-53 | `CheckupReport`, 키를 정렬한 JSON 인코더 |
