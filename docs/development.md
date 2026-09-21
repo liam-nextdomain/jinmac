@@ -40,7 +40,7 @@ Verdict ← Report ← Narrator  문장: Narrator는 판정 결과만 받는다
 | 모듈 | 요구사항 | 지금 들어 있는 것 |
 |---|---|---|
 | `Model` | 공용 | `Sample`(읽지 못한 값은 `nil`), `ResourceKind`, `Grade`, `Judgement` |
-| `Collector` | F-01\~F-11 | `Sampler` 프로토콜 |
+| `Collector` | F-01\~F-11 | `Sampler` 프로토콜, `MemorySampler`, `CPUSampler`(`CoreTopology`로 P·E 구분) |
 | `Store` | 7장 | `SampleStore`: WAL 모드로 열기, `user_version` |
 | `Workload` | F-20, F-21 | `WorkloadCategory` 10종, 빈 `app-categories.json` |
 | `Verdict` | F-30\~F-34, 5장 | `rules.json`(5장 초기값), 경계값 판정과 보류 |
@@ -172,7 +172,7 @@ v0.1.0은 요구사항 13장 1단계(MVP)의 완료 기준을 채워야 합니�
 <!-- roadmap:release-checklist:start -->
 - [x] 자체 서명 인증서로 서명한 설치본에서 Foundation Models 호출이 되는지 실기기에서 확인
 - [x] SMC 온도와 IOReport 주파수를 일반 권한으로 읽을 수 있는지 확인
-- [ ] 메모리·CPU 수집과 SQLite 저장
+- [x] 메모리·CPU 수집과 SQLite 저장
 - [ ] 메모리 판정과 템플릿 한국어 리포트
 - [ ] 리포트 카드 PNG 내보내기
 - [ ] README 설치 안내와 수집 항목 전체 목록
